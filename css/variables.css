@@ -1,0 +1,201 @@
+/* ==========================================================================
+   DESIGN TOKENS & SYSTEM VARIABLES
+   Márcio Sandim Advogados — Visual Identity Manual 2026
+   Dual-Theme System (Dark Default & Refined Light Editorial)
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* --- Cores Institucionais Primárias (Modo Escuro) --- */
+  --color-petroleo: #0E2E38;         /* 45% - Fundo dominante institucional, hero dark */
+  --color-petroleo-dark: #071A20;    /* Superfícies ultra-profundas e modais */
+  --color-petroleo-surface: #143A46; /* Superfície de cartões escuros e hovers */
+  
+  --color-offwhite: #F4F2ED;         /* 30% - Superfícies editoriais, texto sobre escuro */
+  --color-offwhite-subtle: #EBE8E1;  /* Divisores claros e fundos secundários */
+  
+  --color-grafite: #2A2F33;          /* 15% - Tipografia de leitura em fundos claros */
+  --color-grafite-deep: #1E2225;     /* Cartões secundários de alto contraste */
+  
+  --color-mineral: #8C9196;          /* 7% - Linhas arquitetônicas, legendas e metadados */
+  --color-mineral-alpha: rgba(140, 145, 150, 0.2);
+  
+  --color-champagne: #C6B49A;        /* 3% - Acento Nobre Exclusivo: CTAs e bordas ativas */
+  --color-champagne-hover: #D8C7B0;  /* Hover suave do acento */
+  --color-champagne-alpha: rgba(198, 180, 154, 0.15);
+  --color-champagne-border: rgba(198, 180, 154, 0.35);
+
+  /* --- Superfícies e Fundos Semânticos (Escuro) --- */
+  --bg-body: var(--color-petroleo);
+  --bg-surface-alt: var(--color-petroleo-dark);
+  --bg-card: rgba(20, 58, 70, 0.35);
+  --bg-card-hover: rgba(20, 58, 70, 0.65);
+  --bg-card-subtle: rgba(20, 58, 70, 0.25);
+  --bg-card-highlight: rgba(14, 46, 56, 0.6);
+  --bg-security: linear-gradient(180deg, var(--color-petroleo-dark) 0%, rgba(14, 46, 56, 0.95) 100%);
+  --bg-security-box: rgba(20, 58, 70, 0.4);
+  --bg-form: rgba(14, 46, 56, 0.5);
+  --bg-input: rgba(7, 26, 32, 0.75);
+  --bg-footer: #051318;
+  --bg-modal: var(--color-petroleo-dark);
+  --bg-drawer: var(--color-petroleo-dark);
+  --bg-portrait-frame: rgba(14, 46, 56, 0.5);
+  --bg-portrait-inner: var(--color-petroleo-dark);
+
+  /* --- Tipografia Semântica (Escuro) --- */
+  --text-headings: #FFFFFF;
+  --text-light: #F4F2ED;
+  --text-light-muted: rgba(244, 242, 237, 0.75);
+  --text-light-dim: rgba(244, 242, 237, 0.45);
+  --text-dark: #2A2F33;
+  --text-dark-muted: #5C6268;
+  --text-accent: var(--color-champagne);
+  --text-accent-hover: var(--color-champagne-hover);
+
+  /* --- Botões Semânticos (Escuro) --- */
+  --btn-primary-bg: var(--color-champagne);
+  --btn-primary-text: var(--color-petroleo);
+  --btn-primary-border: var(--color-champagne);
+  --btn-primary-hover-bg: var(--color-champagne-hover);
+  --btn-primary-hover-border: var(--color-champagne-hover);
+  --btn-ghost-color: var(--text-light);
+  --btn-ghost-border: 1px solid rgba(244, 242, 237, 0.25);
+
+  /* --- Filtro do Mapa --- */
+  --map-filter: grayscale(85%) contrast(1.1) invert(90%) hue-rotate(180deg);
+
+  /* --- Tipografia --- */
+  --font-serif: 'Spectral', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- Escala Tipográfica Fluida (clamp) --- */
+  --text-xs: clamp(0.8125rem, 0.78rem + 0.2vw, 0.875rem); /* 13px - 14px (Acessibilidade WCAG) */
+  --text-sm: clamp(0.875rem, 0.85rem + 0.2vw, 0.95rem);   /* 14px - 15.2px */
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);    /* 16px - 18px */
+  --text-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);    /* 18.4px - 21.6px */
+  --text-xl: clamp(1.4rem, 1.25rem + 0.75vw, 1.8rem);     /* 22.4px - 28.8px */
+  --text-2xl: clamp(1.8rem, 1.5rem + 1.5vw, 2.5rem);      /* 28.8px - 40px */
+  --text-3xl: clamp(2.3rem, 1.8rem + 2.5vw, 3.6rem);      /* 36.8px - 57.6px */
+  --text-hero: clamp(2.8rem, 2.2rem + 3.8vw, 4.8rem);     /* 44.8px - 76.8px */
+
+  /* --- Espaçamentos Modulares --- */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+
+  /* --- Layout & Larguras --- */
+  --container-max: 1280px;
+  --container-reading: 780px;
+  --header-height: 84px;
+  --header-height-scrolled: 70px;
+
+  /* --- Acabamentos & Sombras --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-elevated: 0 10px 24px rgba(0, 0, 0, 0.28);
+  --shadow-btn-hover: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+  /* --- Efeito Vidro (Glassmorphism Sóbrio) --- */
+  --glass-bg: rgba(14, 46, 56, 0.88);
+  --glass-border: 1px solid rgba(198, 180, 154, 0.18);
+  --glass-blur: blur(20px);
+
+  /* --- Linhas & Molduras Arquitetônicas (Hairlines) --- */
+  --border-hairline: 1px solid rgba(255, 255, 255, 0.09);
+  --border-hairline-light: 1px solid rgba(42, 47, 51, 0.12);
+  --border-hairline-accent: 1px solid rgba(198, 180, 154, 0.3);
+  --border-input: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* --- Físicas de Animação (Emil & Apple Guidelines) --- */
+  --ease-apple: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 180ms var(--ease-apple);
+  --transition-base: 280ms var(--ease-apple);
+  --transition-slow: 450ms var(--ease-apple);
+}
+
+/* ==========================================================================
+   TEMA CLARO EDITORIAL (LIGHT THEME)
+   Inspirado em papelaria nobre jurídica e impressos de alta corte.
+   ========================================================================== */
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* --- Cores Institucionais no Modo Claro --- */
+  --color-petroleo: #0E2E38;
+  --color-petroleo-dark: #ECE7DD;
+  --color-petroleo-surface: #E2DDD2;
+
+  --color-offwhite: #232D33;
+  --color-offwhite-subtle: #4D575E;
+
+  /* --- Superfícies e Fundos Semânticos (Claro) --- */
+  --bg-body: #F6F4EF;                 /* Off-White Alabastro nobre */
+  --bg-surface-alt: #ECE7DD;          /* Seções alternadas para ritmo editorial */
+  --bg-card: #FFFFFF;                 /* Cartões alvos de leitura nítida */
+  --bg-card-hover: #FFFFFF;
+  --bg-card-subtle: #FAF9F5;
+  --bg-card-highlight: #FFFFFF;
+  --bg-security: linear-gradient(180deg, #ECE7DD 0%, #E2DDD2 100%);
+  --bg-security-box: #FFFFFF;
+  --bg-form: #FFFFFF;
+  --bg-input: #FAF9F6;
+  --bg-footer: #081B22;               /* Rodapé solene escuro ancorando a base */
+  --bg-modal: #FFFFFF;
+  --bg-drawer: #F6F4EF;
+  --bg-portrait-frame: #E8E3D7;
+  --bg-portrait-inner: #DED8CB;
+
+  /* --- Tipografia Semântica (Claro) --- */
+  --text-headings: #0E2E38;           /* Azul Petróleo Profundo nos títulos */
+  --text-light: #232D33;               /* Grafite escuro legível (contraste AAA) */
+  --text-light-muted: #525E65;         /* Mineral escuro (contraste 7:1+) */
+  --text-light-dim: #7C8890;
+  --text-dark: #232D33;
+  --text-dark-muted: #525E65;
+  --text-accent: #876C42;              /* Champagne escurecido com alto contraste AA (4.5:1+) */
+  --text-accent-hover: #6B5532;
+
+  --color-champagne: #876C42;
+  --color-champagne-hover: #6B5532;
+  --color-champagne-alpha: rgba(135, 108, 66, 0.12);
+  --color-champagne-border: rgba(135, 108, 66, 0.35);
+
+  /* --- Botões Semânticos (Claro) --- */
+  --btn-primary-bg: #0E2E38;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-border: #0E2E38;
+  --btn-primary-hover-bg: #16404D;
+  --btn-primary-hover-border: #16404D;
+  --btn-ghost-color: #0E2E38;
+  --btn-ghost-border: 1px solid rgba(14, 46, 56, 0.3);
+
+  /* --- Filtro do Mapa --- */
+  --map-filter: grayscale(20%) contrast(1.04);
+
+  /* --- Linhas & Molduras (Claro) --- */
+  --border-hairline: 1px solid rgba(14, 46, 56, 0.12);
+  --border-hairline-light: 1px solid rgba(14, 46, 56, 0.08);
+  --border-hairline-accent: 1px solid rgba(135, 108, 66, 0.35);
+  --border-input: 1px solid rgba(14, 46, 56, 0.22);
+
+  /* --- Efeito Vidro (Claro) --- */
+  --glass-bg: rgba(246, 244, 239, 0.92);
+  --glass-border: 1px solid rgba(14, 46, 56, 0.1);
+
+  /* --- Sombras (Claro) --- */
+  --shadow-subtle: 0 4px 20px rgba(14, 46, 56, 0.06);
+  --shadow-elevated: 0 10px 24px rgba(14, 46, 56, 0.12);
+  --shadow-btn-hover: 0 4px 16px rgba(14, 46, 56, 0.25);
+}

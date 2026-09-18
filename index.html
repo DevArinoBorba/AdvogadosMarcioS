@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Márcio Sandim Advogados | Advocacia Multidisciplinar em Campo Grande - MS</title>
+  <meta name="description" content="Banca de advocacia multidisciplinar sediada em Campo Grande/MS. Atuação estratégica em Direito Criminal, Cível, Família, Militar, Tributário e Empresarial.">
+  <meta name="keywords" content="advogado campo grande ms, marcio sandim advogados, advocacia criminal ms, direito civel, tributario, militar, empresarial, empire center afonso pena">
+  <meta name="theme-color" content="#0E2E38">
+  <meta name="color-scheme" content="dark light">
+  
+  <!-- Prevenção Instantânea de FOUC de Tema -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('sandim_theme');
+        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = saved || (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+        var metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.content = theme === 'light' ? '#F6F4EF' : '#0E2E38';
+        }
+      } catch (e) {}
+    })();
+  </script>
+  
+  <!-- Open Graph / Meta Compartilhamento -->
+  <meta property="og:title" content="Márcio Sandim Advogados | Advocacia Multidisciplinar">
+  <meta property="og:description" content="Estrutura e estratégia para cada fase do processo. Sede no Edifício Empire Center em Campo Grande/MS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.marciosandim.com/">
+  
+  <!-- Fontes Oficiais do Design System (Spectral & Barlow) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Estilos Globais -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER INSTITUCIONAL COM EFEITO VIDRO
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="#hero" class="brand-logo" aria-label="Márcio Sandim Advogados">
+        <div class="brand-monogram">
+          <span>M</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Márcio Sandim</span>
+          <span class="brand-subtitle">Advogados</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="nav-desktop" aria-label="Navegação Principal">
+        <ul class="nav-menu">
+          <li><a href="#sobre" class="nav-link">O Escritório</a></li>
+          <li><a href="#areas" class="nav-link">Áreas de Atuação</a></li>
+          <li><a href="#equipe" class="nav-link">Corpo Jurídico</a></li>
+          <li><a href="#seguranca" class="nav-link">Segurança</a></li>
+          <li><a href="#estrutura" class="nav-link">Sede</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botões de Ação -->
+      <div class="header-actions">
+        <!-- Botão Minimalista de Troca de Tema (Emil Kowalski Guidelines) -->
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema visual" title="Alternar tema claro / escuro">
+          <span class="theme-toggle-sr">Alternar tema claro / escuro</span>
+          <!-- Ícone Sol (Modo Escuro) -->
+          <svg class="theme-icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Ícone Lua (Modo Claro) -->
+          <svg class="theme-icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="https://wa.me/5567991672000?text=Olá,%20gostaria%20de%20solicitar%20um%20atendimento%20com%20o%20escritório%20Márcio%20Sandim%20Advogados." target="_blank" rel="noopener" class="btn-header" aria-label="Falar com o Escritório Márcio Sandim Advogados via WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.22-.19-.47-.32z"/>
+          </svg>
+          <span>Fale Conosco</span>
+        </a>
+        <button class="menu-toggle" aria-label="Abrir Menu" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu Drawer Mobile -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <button class="drawer-close" id="drawerClose" aria-label="Fechar Menu">&times;</button>
+    <ul class="drawer-nav">
+      <li><a href="#sobre" class="drawer-link">01 · O Escritório <span>&rarr;</span></a></li>
+      <li><a href="#areas" class="drawer-link">02 · Áreas de Atuação <span>&rarr;</span></a></li>
+      <li><a href="#equipe" class="drawer-link">03 · Corpo Jurídico <span>&rarr;</span></a></li>
+      <li><a href="#seguranca" class="drawer-link">04 · Canal Verificado <span>&rarr;</span></a></li>
+      <li><a href="#estrutura" class="drawer-link">05 · Sede & Localização <span>&rarr;</span></a></li>
+      <li><a href="#contato" class="drawer-link">06 · Contato & Agendamento <span>&rarr;</span></a></li>
+    </ul>
+    <div class="drawer-footer" style="padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+        <span style="font-size: 0.85rem; color: var(--text-light-muted);">Tema Visual</span>
+        <button class="theme-toggle theme-toggle-mobile" aria-label="Alternar tema visual" title="Alternar tema claro / escuro">
+          <span class="theme-toggle-sr">Alternar tema claro / escuro</span>
+          <svg class="theme-icon icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--color-champagne); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Atendimento Oficial</p>
+      <p style="font-size: 0.9rem; color: var(--text-light-muted); margin-bottom: 16px;">Campo Grande · MS<br>(67) 3029-1060 | (67) 99167-2000</p>
+      <a href="https://wa.me/5567991672000" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;">WhatsApp Oficial</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="kicker">Campo Grande · MS</span>
+            <h1 class="hero-title">Advocacia multidisciplinar</h1>
+            <p class="hero-subtitle">Estrutura e estratégia para cada fase do processo.</p>
+            <p class="hero-description">
+              Solidez institucional construída com rigor técnico e atuação personalizada. Da fase investigativa aos Tribunais Superiores, oferecemos assessoria jurídica de alta complexidade para indivíduos e corporações em todo o território nacional.
+            </p>
+            <div class="hero-ctas">
+              <a href="https://wa.me/5567991672000?text=Olá,%20gostaria%20de%20agendar%20um%20atendimento%20com%20a%20equipe%20jurídica." target="_blank" rel="noopener" class="btn btn-primary">
+                Falar com o Escritório
+              </a>
+              <a href="#areas" class="btn btn-ghost">
+                Conhecer Áreas
+              </a>
+            </div>
+          </div>
+
+          <!-- Retrato Dr. Márcio Sandim -->
+          <div class="hero-portrait-wrapper">
+            <span class="crosshair crosshair-tl">+</span>
+            <span class="crosshair crosshair-tr">+</span>
+            <span class="crosshair crosshair-bl">+</span>
+            <span class="crosshair crosshair-br">+</span>
+            
+            <div class="hero-portrait">
+              <img src="assets/images/marcio-sandim-principal.png" alt="Dr. Márcio Sandim - Sócio Titular Márcio Sandim Advogados" loading="eager" width="600" height="750">
+              <div class="hero-portrait-badge">
+                <span class="badge-name">Dr. Márcio Sandim</span>
+                <span class="badge-role">Sócio Titular · OAB/MS 10.217</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Régua Inferior de Acesso Rápido -->
+        <div class="hero-bottom-bar" aria-label="Acesso Rápido às Áreas de Atuação">
+          <a href="#areas" class="quick-area-tab" data-area="01">
+            <span class="tab-index">01</span>
+            <span class="tab-title">Criminal</span>
+          </a>
+          <a href="#areas" class="quick-area-tab" data-area="02">
+            <span class="tab-index">02</span>
+            <span class="tab-title">Cível</span>
+          </a>
+          <a href="#areas" class="quick-area-tab" data-area="03">
+            <span class="tab-index">03</span>
+            <span class="tab-title">Família</span>
+          </a>
+          <a href="#areas" class="quick-area-tab" data-area="04">
+            <span class="tab-index">04</span>
+            <span class="tab-title">Militar</span>
+          </a>
+          <a href="#areas" class="quick-area-tab" data-area="05">
+            <span class="tab-index">05</span>
+            <span class="tab-title">Tributário</span>
+          </a>
+          <a href="#areas" class="quick-area-tab" data-area="06">
+            <span class="tab-index">06</span>
+            <span class="tab-title">Empresarial</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO O ESCRITÓRIO (SOBRE & MANIFESTO)
+         ========================================================================== -->
+    <section class="section-about" id="sobre">
+      <div class="container">
+        <span class="kicker">Institucional</span>
+        <h2 class="section-title">Solidez de uma banca contemporânea</h2>
+        
+        <!-- Manifesto da Marca -->
+        <div class="manifesto-box">
+          <p class="manifesto-quote">
+            "Não reinventar o escritório. Elevá-lo. Tradição sem ser antiga. Modernidade sem modismo. Sofisticação sem ostentação. Autoridade sem excesso."
+          </p>
+          <span class="manifesto-author">— Posicionamento Institucional Márcio Sandim Advogados</span>
+        </div>
+
+        <!-- Os 4 Pilares Fundamentais -->
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <span class="pillar-num">I</span>
+            <h3 class="pillar-title">Autoridade</h3>
+            <p class="pillar-desc">Reconhecimento técnico e liderança jurídica comprovada em casos de alta repercussão perante a Justiça Federal, Tribunais Estaduais e Cortes Superiores (STJ e STF).</p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-num">II</span>
+            <h3 class="pillar-title">Estrutura</h3>
+            <p class="pillar-desc">Sede própria no Edifício Empire Center em Campo Grande/MS, tecnologia de acompanhamento processual em tempo real e infraestrutura de ponta para atendimentos presenciais e remotos.</p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-num">III</span>
+            <h3 class="pillar-title">Estratégia</h3>
+            <p class="pillar-desc">Abordagem personalizada e analítica para cada cliente, atuando cirurgicamente desde procedimentos preventivos até a condução combativa do contencioso judicial.</p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-num">IV</span>
+            <h3 class="pillar-title">Proximidade</h3>
+            <p class="pillar-desc">Relação direta, transparente e humanizada. Clareza nas orientações jurídicas e comunicação ágil, garantindo que o cliente esteja sempre ciente dos passos de sua causa.</p>
+          </div>
+        </div>
+
+        <!-- Métricas Institucionais -->
+        <div class="metrics-strip">
+          <div class="metric-item">
+            <span class="metric-value">Multidisciplinar</span>
+            <span class="metric-label">Corpo jurídico especializado por área de atuação</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-value">Campo Grande · MS</span>
+            <span class="metric-label">Sede nobre no Edifício Empire Center</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-value">Alcance Nacional</span>
+            <span class="metric-label">Atuação contenciosa e sustentações em Brasília</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO ÁREAS DE ATUAÇÃO (3x2 INTERACTIVE GRID)
+         ========================================================================== -->
+    <section class="section-areas" id="areas">
+      <div class="container">
+        <span class="kicker">Expertise Jurídica</span>
+        <h2 class="section-title">Áreas de Atuação</h2>
+        <p class="section-subtitle">Soluções integradas com rigor técnico para indivíduos, famílias e empresas em todas as esferas processuais.</p>
+
+        <div class="areas-grid">
+          <!-- 01. Criminal -->
+          <div class="area-card" data-area="01">
+            <div class="area-card-header">
+              <span class="area-number">01</span>
+              <span class="area-tag">Penal & Júri</span>
+            </div>
+            <div>
+              <h3 class="area-title">Direito Criminal</h3>
+              <p class="area-scope">Atuação técnica em inquéritos policiais, audiências de custódia, Tribunal do Júri, habeas corpus e recursos aos Tribunais Superiores (STJ e STF).</p>
+            </div>
+            <span class="area-action">Ver Escopo Completo &rarr;</span>
+          </div>
+
+          <!-- 02. Cível -->
+          <div class="area-card" data-area="02">
+            <div class="area-card-header">
+              <span class="area-number">02</span>
+              <span class="area-tag">Contencioso</span>
+            </div>
+            <div>
+              <h3 class="area-title">Direito Cível</h3>
+              <p class="area-scope">Contencioso estratégico de alta complexidade, responsabilidade civil, obrigações, disputas contratuais, recuperação de ativos e proteção patrimonial.</p>
+            </div>
+            <span class="area-action">Ver Escopo Completo &rarr;</span>
+          </div>
+
+          <!-- 03. Família e Sucessões -->
+          <div class="area-card" data-area="03">
+            <div class="area-card-header">
+              <span class="area-number">03</span>
+              <span class="area-tag">Patrimônio</span>
+            </div>
+            <div>
+              <h3 class="area-title">Família e Sucessões</h3>
+              <p class="area-scope">Inventários judiciais e extrajudiciais, partilha de bens, planejamento sucessório familiar e estruturação preventiva com absoluta discrição.</p>
+            </div>
+            <span class="area-action">Ver Escopo Completo &rarr;</span>
+          </div>
+
+          <!-- 04. Militar -->
+          <div class="area-card" data-area="04">
+            <div class="area-card-header">
+              <span class="area-number">04</span>
+              <span class="area-tag">Justiça Militar</span>
+            </div>
+            <div>
+              <h3 class="area-title">Direito Militar</h3>
+              <p class="area-scope">Defesa especializada perante as Justiças Militares Estadual e da União, IPM, conselhos de disciplina e processos administrativos disciplinares.</p>
+            </div>
+            <span class="area-action">Ver Escopo Completo &rarr;</span>
+          </div>
+
+          <!-- 05. Tributário -->
+          <div class="area-card" data-area="05">
+            <div class="area-card-header">
+              <span class="area-number">05</span>
+              <span class="area-tag">Fiscal</span>
+            </div>
+            <div>
+              <h3 class="area-title">Direito Tributário</h3>
+              <p class="area-scope">Revisão fiscal, planejamento tributário preventivo, gestão de passivos, defesas administrativas e judiciais contra autuações e repetição de indébito.</p>
+            </div>
+            <span class="area-action">Ver Escopo Completo &rarr;</span>
+          </div>
+
+          <!-- 06. Empresarial -->
+          <div class="area-card" data-area="06">
+            <div class="area-card-header">
+              <span class="area-number">06</span>
+              <span class="area-tag">Corporativo</span>
+            </div>
+            <div>
+              <h3 class="area-title">Direito Empresarial</h3>
+              <p class="area-scope">Assessoria contínua para empresas, estruturação societária, compliance, prevenção de litígios e elaboração de contratos mercantis estratégicos.</p>
+            </div>
+            <span class="area-action">Ver Escopo Completo &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO CORPO JURÍDICO & LIDERANÇA
+         ========================================================================== -->
+    <section class="section-team" id="equipe">
+      <div class="container">
+        <span class="kicker">Corpo Jurídico</span>
+        <h2 class="section-title">Liderança & Advogados Associados</h2>
+        <p class="section-subtitle">Profissionais com sólida formação técnica e dedicação exclusiva a cada uma de nossas áreas de atuação.</p>
+
+        <!-- Destaque Sócio Fundador -->
+        <div class="leader-card">
+          <div class="leader-photo">
+            <img src="assets/images/marcio-sandim-principal.png" alt="Dr. Márcio Sandim" width="400" height="500">
+          </div>
+          <div class="leader-info">
+            <h3>Dr. Márcio Sandim</h3>
+            <span class="leader-badge">Sócio Titular / Fundador · OAB/MS 10.217</span>
+            <p class="leader-bio">
+              Com carreira jurídica consolidada e destacada atuação no Direito Criminal e Processual Penal, o Dr. Márcio Sandim lidera a banca combinando rigor técnico, combatividade nos tribunais e visão multidisciplinar. Conduz defesas perante a Justiça Estadual, Federal e Cortes Superiores em Brasília (STJ e STF).
+            </p>
+            <p class="leader-bio">
+              Sua filosofia de trabalho une o profundo respeito às garantias fundamentais com o atendimento humanizado, assegurando uma advocacia de alta precisão estratégica.
+            </p>
+            <a href="https://wa.me/5567991672000" target="_blank" class="btn btn-ghost btn-sm" style="margin-top: 8px;">
+              Agendar Atendimento com o Dr. Márcio Sandim
+            </a>
+          </div>
+        </div>
+
+        <!-- Grid de Advogados e Equipe -->
+        <div class="team-grid">
+          <!-- Dr. Wellington Albuquerque -->
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/images/wellington-albuquerque.jpg" alt="Dr. Wellington Albuquerque" width="300" height="300">
+            </div>
+            <div class="team-details">
+              <h4 class="team-name">Dr. Wellington Albuquerque</h4>
+              <p class="team-role">Advogado Sênior</p>
+              <p class="team-oab">OAB/MS 13.331 · Conselheiro OAB/MS e Membro do TED</p>
+            </div>
+          </div>
+
+          <!-- Dra. Aline Marques Leandro -->
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/images/aline-marques-leandro.jpg" alt="Dra. Aline Marques Leandro" width="300" height="300">
+            </div>
+            <div class="team-details">
+              <h4 class="team-name">Dra. Aline Marques Leandro</h4>
+              <p class="team-role">Advogada Associada</p>
+              <p class="team-oab">OAB/MS 19.088 · Atuação perante o TRF3 e Contencioso</p>
+            </div>
+          </div>
+
+          <!-- Dr. Guilherme Gonçalves Marin -->
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/images/guilherme-marin.jpg" alt="Dr. Guilherme Gonçalves Marin" width="300" height="300">
+            </div>
+            <div class="team-details">
+              <h4 class="team-name">Dr. Guilherme Marin</h4>
+              <p class="team-role">Advogado Associado</p>
+              <p class="team-oab">OAB/MS 23.087 · Contencioso Cível e Contratos</p>
+            </div>
+          </div>
+
+          <!-- Dr. André Tanahara -->
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/images/andre-tanahara.jpg" alt="Dr. André Tanahara" width="300" height="300">
+            </div>
+            <div class="team-details">
+              <h4 class="team-name">Dr. André Tanahara</h4>
+              <p class="team-role">Corpo Jurídico</p>
+              <p class="team-oab">OAB/MS · Previdenciário e Imobiliário</p>
+            </div>
+          </div>
+
+          <!-- Dra. Patricia Azevedo -->
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/images/patricia-azevedo.jpg" alt="Dra. Patricia Azevedo" width="300" height="300">
+            </div>
+            <div class="team-details">
+              <h4 class="team-name">Dra. Patricia Azevedo</h4>
+              <p class="team-role">Corpo Jurídico</p>
+              <p class="team-oab">OAB/MS · Consultoria Jurídica e Cível</p>
+            </div>
+          </div>
+
+          <!-- Dr. Renato Tanahara -->
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/images/renato-tanahara.jpg" alt="Dr. Renato Tanahara" width="300" height="300">
+            </div>
+            <div class="team-details">
+              <h4 class="team-name">Dr. Renato Tanahara</h4>
+              <p class="team-role">Corpo Jurídico</p>
+              <p class="team-oab">OAB/MS · Suporte Processual e Contencioso</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MÓDULO DE SEGURANÇA INSTITUCIONAL (TRUST SHIELD)
+         ========================================================================== -->
+    <section class="section-security" id="seguranca">
+      <div class="container">
+        <div class="security-box">
+          <div class="security-icon" aria-hidden="true">&#128737;</div>
+          <div class="security-text">
+            <h4>Canal Oficial Verificado · Prevenção a Fraudes</h4>
+            <p>
+              <strong>Aviso aos clientes e filiados:</strong> O escritório Márcio Sandim Advogados <strong>NÃO</strong> solicita transferências bancárias, depósitos, adiantamentos ou pagamentos via PIX através de mensagens de WhatsApp sem contrato prévio formalmente assinado e contato telefônico comprovado. Certifique-se sempre de estar dialogando com os números oficiais registrados em nosso site.
+            </p>
+          </div>
+          <div class="security-actions">
+            <button class="btn btn-ghost btn-sm" id="copySecurityInfo">
+              Copiar Telefones Oficiais
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO ESTRUTURA, SEDE & LOCALIZAÇÃO
+         ========================================================================== -->
+    <section class="section-location" id="estrutura">
+      <div class="container">
+        <div class="location-grid">
+          <div class="location-details">
+            <span class="kicker">Sede Institucional</span>
+            <h2 class="section-title">Infraestrutura no centro de Campo Grande</h2>
+            <p style="color: var(--text-light-muted); font-size: 0.95rem; margin-bottom: 24px;">
+              Instalado em um dos mais tradicionais centros executivos da capital sul-mato-grossense, nosso escritório dispõe de salas de conferência climatizadas, biblioteca jurídica e atendimento com total discrição e conforto.
+            </p>
+
+            <div class="info-card">
+              <h3>Endereço Oficial</h3>
+              <p>Avenida Afonso Pena, nº 3504, 6º Andar, Sala 65</p>
+              <p>Edifício Empire Center — Bairro Jardim dos Estados</p>
+              <p>Campo Grande / MS — CEP: 79.002-072</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Horário de Atendimento Presencial</h3>
+              <p>Segunda a sexta-feira: 08h00 às 12h00 e das 13h00 às 18h00</p>
+              <p style="color: var(--color-champagne); margin-top: 4px;">Plantão Criminal 24 Horas: (67) 99167-2000</p>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <a href="https://maps.google.com/?q=Avenida+Afonso+Pena+3504+Campo+Grande+MS" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                Abrir no Google Maps &rarr;
+              </a>
+              <a href="tel:6730291060" class="btn btn-ghost btn-sm">
+                Ligar: (67) 3029-1060
+              </a>
+            </div>
+          </div>
+
+          <!-- Mapa Integrado -->
+          <div class="map-wrapper">
+            <span class="crosshair crosshair-tl">+</span>
+            <span class="crosshair crosshair-tr">+</span>
+            <span class="crosshair crosshair-bl">+</span>
+            <span class="crosshair crosshair-br">+</span>
+            <iframe class="map-frame" src="https://maps.google.com/maps?q=Avenida%20Afonso%20Pena%203504%20Campo%20Grande%20MS&t=&z=16&ie=UTF8&iwloc=&output=embed" title="Localização Márcio Sandim Advogados"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO CONTATO & AGENDAMENTO
+         ========================================================================== -->
+    <section class="section-contact" id="contato">
+      <div class="container">
+        <span class="kicker">Atendimento</span>
+        <h2 class="section-title">Inicie seu Atendimento</h2>
+        <p class="section-subtitle">Entre em contato diretamente com nossa equipe para agendamento de consultas ou esclarecimento de dúvidas processuais.</p>
+
+        <div class="contact-grid">
+          <!-- Canais Diretos -->
+          <div class="contact-channels">
+            <div class="channel-card">
+              <div class="channel-icon">&#128222;</div>
+              <div class="channel-info">
+                <h3>Central Telefônica</h3>
+                <a href="tel:6730291060">(67) 3029-1060</a>
+              </div>
+            </div>
+
+            <div class="channel-card">
+              <div class="channel-icon">&#9878;</div>
+              <div class="channel-info">
+                <h3>Plantão Criminal 24h / WhatsApp</h3>
+                <a href="https://wa.me/5567991672000" target="_blank">(67) 99167-2000</a>
+              </div>
+            </div>
+
+            <div class="channel-card">
+              <div class="channel-icon">&#9993;</div>
+              <div class="channel-info">
+                <h3>E-mail Institucional</h3>
+                <a href="mailto:contato@marciosandim.com">contato@marciosandim.com</a>
+              </div>
+            </div>
+
+            <div class="channel-card">
+              <div class="channel-icon">&#128337;</div>
+              <div class="channel-info">
+                <h3>Horário de Funcionamento</h3>
+                <p style="font-size: 1rem; color: #FFFFFF; margin-top: 4px;">Segunda a Sexta · 8h às 12h e 13h às 18h</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulário Ético OAB -->
+          <div class="contact-form">
+            <span class="crosshair crosshair-tl">+</span>
+            <span class="crosshair crosshair-tr">+</span>
+            <span class="crosshair crosshair-bl">+</span>
+            <span class="crosshair crosshair-br">+</span>
+
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="formName">Nome Completo</label>
+                  <input type="text" id="formName" class="form-input" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="formPhone">Telefone / WhatsApp</label>
+                  <input type="tel" id="formPhone" class="form-input" placeholder="(67) 99999-9999" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="formEmail">E-mail para Contato</label>
+                  <input type="email" id="formEmail" class="form-input" placeholder="seuemail@exemplo.com">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="formArea">Área de Interesse</label>
+                  <select id="formArea" class="form-select">
+                    <option value="criminal">Direito Criminal</option>
+                    <option value="civel">Direito Cível</option>
+                    <option value="familia">Família e Sucessões</option>
+                    <option value="militar">Direito Militar</option>
+                    <option value="tributario">Direito Tributário</option>
+                    <option value="empresarial">Direito Empresarial</option>
+                    <option value="outra">Outro Assunto</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="formMessage">Breve Resumo da Demanda</label>
+                <textarea id="formMessage" class="form-textarea" placeholder="Descreva brevemente sua solicitação..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Enviar Solicitação de Atendimento
+              </button>
+
+              <p class="form-disclaimer">
+                Conforme o Código de Ética e Disciplina da OAB e o Provimento nº 205/2021 do CFOAB, as informações enviadas são resguardadas por sigilo profissional e tratadas em estrita conformidade com a Lei Geral de Proteção de Dados (LGPD).
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER INSTITUCIONAL SOLENE
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <div class="brand-monogram">
+              <span>M</span>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">Márcio Sandim</span>
+              <span class="brand-subtitle">Advogados</span>
+            </div>
+          </div>
+          <p style="color: var(--text-light-muted); line-height: 1.6; max-width: 320px; margin-bottom: 16px;">
+            Banca de advocacia multidisciplinar sediada em Campo Grande/MS, pautada pela excelência técnica, ética e solidez estratégica perante todas as instâncias do Judiciário.
+          </p>
+          <p style="font-size: 0.8125rem; color: var(--color-champagne);">Dr. Márcio Sandim · OAB/MS 10.217</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Navegação</h3>
+          <ul class="footer-links">
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#sobre">O Escritório</a></li>
+            <li><a href="#areas">Áreas de Atuação</a></li>
+            <li><a href="#equipe">Corpo Jurídico</a></li>
+            <li><a href="#estrutura">Sede & Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Áreas de Atuação</h3>
+          <ul class="footer-links">
+            <li><a href="#areas">Direito Criminal</a></li>
+            <li><a href="#areas">Direito Cível</a></li>
+            <li><a href="#areas">Família & Sucessões</a></li>
+            <li><a href="#areas">Direito Militar</a></li>
+            <li><a href="#areas">Direito Tributário</a></li>
+            <li><a href="#areas">Direito Empresarial</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Sede & Contato</h3>
+          <p style="color: var(--text-light-muted); line-height: 1.5; margin-bottom: 8px;">
+            Avenida Afonso Pena, nº 3504, Sala 65<br>
+            Ed. Empire Center · Jd. dos Estados<br>
+            Campo Grande / MS · CEP 79.002-072
+          </p>
+          <p style="color: var(--text-light-muted); margin-bottom: 4px;">Fixo: (67) 3029-1060</p>
+          <p style="color: var(--color-champagne); margin-bottom: 12px;">Plantão 24h: (67) 99167-2000</p>
+          <p style="color: var(--text-light-muted); font-size: 0.85rem;">contato@marciosandim.com</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Márcio Sandim Advogados. Todos os direitos reservados.</p>
+        <div class="developer-credit">
+          <a href="https://oriumdigital.com.br/" target="_blank" rel="noopener" class="developer-link" title="Orium Digital — Criação de Sites e Marketing Digital">
+            <span>Desenvolvido por</span>
+            <img src="assets/images/orium-logo-light.png" alt="Orium Digital" class="orium-logo-footer" width="38" height="34" loading="lazy">
+          </a>
+        </div>
+        <p class="footer-oab">Desenvolvido em conformidade com o Provimento nº 205/2021 do Conselho Federal da OAB.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL DE DETALHES DAS ÁREAS DE ATUAÇÃO
+       ========================================================================== -->
+  <div class="modal-overlay" id="areaModal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <span class="crosshair crosshair-tl">+</span>
+      <span class="crosshair crosshair-tr">+</span>
+      <span class="crosshair crosshair-bl">+</span>
+      <span class="crosshair crosshair-br">+</span>
+      
+      <button class="modal-close" id="modalClose" aria-label="Fechar">&times;</button>
+      <span class="kicker" id="modalAreaKicker">Área de Atuação</span>
+      <h3 id="modalAreaTitle" style="font-size: 1.8rem; margin-bottom: 12px;">Título da Área</h3>
+      <p id="modalAreaDesc" style="color: var(--text-light-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;"></p>
+      
+      <h4 style="font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-champagne); margin-bottom: 10px;">Escopo de Serviços:</h4>
+      <ul id="modalAreaList" style="list-style-type: disc; margin-left: 20px; color: var(--text-light-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px;">
+      </ul>
+
+
+      <div style="display: flex; gap: 12px;">
+        <a href="https://wa.me/5567991672000" target="_blank" class="btn btn-primary btn-sm">Consultar Especialista Nesta Área</a>
+        <button class="btn btn-ghost btn-sm" onclick="document.querySelector('.modal-overlay').classList.remove('active'); document.body.style.overflow='';">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-msg" id="toast"></div>
+
+  <!-- JavaScript Principal -->
+  <script src="js/main.js"></script>
+</body>
+</html>

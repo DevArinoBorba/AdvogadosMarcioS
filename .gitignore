@@ -1,0 +1,11 @@
+# Dependências e caches locais
+node_modules/
+.impeccable/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
