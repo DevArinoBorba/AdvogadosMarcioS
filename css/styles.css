@@ -1513,8 +1513,12 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .areas-grid, .team-grid {
+  .areas-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .pillars-grid {
@@ -1585,6 +1589,12 @@ h1, h2, h3, h4 {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
   }
 }
 
