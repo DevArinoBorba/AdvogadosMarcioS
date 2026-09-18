@@ -1,6 +1,7 @@
 # Dependências e caches locais
 node_modules/
 .impeccable/
+server.js
 
 # Sistema operacional
 .DS_Store
