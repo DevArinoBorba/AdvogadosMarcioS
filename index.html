@@ -557,22 +557,25 @@
             <span class="crosshair crosshair-bl">+</span>
             <span class="crosshair crosshair-br">+</span>
 
-            <form id="contactForm">
+            <form id="contactForm" novalidate>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="formName">Nome Completo</label>
-                  <input type="text" id="formName" class="form-input" placeholder="Seu nome" required>
+                  <label class="form-label" for="formName">Nome Completo <span class="form-req" aria-hidden="true">*</span></label>
+                  <input type="text" id="formName" class="form-input" placeholder="Seu nome completo" required aria-required="true" autocomplete="name">
+                  <span class="form-error-text" id="formNameError" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="formPhone">Telefone / WhatsApp</label>
-                  <input type="tel" id="formPhone" class="form-input" placeholder="(67) 99999-9999" required>
+                  <label class="form-label" for="formPhone">Telefone / WhatsApp <span class="form-req" aria-hidden="true">*</span></label>
+                  <input type="tel" id="formPhone" class="form-input" placeholder="(67) 99999-9999" required aria-required="true" inputmode="tel" autocomplete="tel">
+                  <span class="form-error-text" id="formPhoneError" aria-live="polite"></span>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="formEmail">E-mail para Contato</label>
-                  <input type="email" id="formEmail" class="form-input" placeholder="seuemail@exemplo.com">
+                  <input type="email" id="formEmail" class="form-input" placeholder="seuemail@exemplo.com" autocomplete="email">
+                  <span class="form-error-text" id="formEmailError" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="formArea">Área de Interesse</label>
@@ -675,7 +678,7 @@
   <!-- ==========================================================================
        MODAL DE DETALHES DAS ÁREAS DE ATUAÇÃO
        ========================================================================== -->
-  <div class="modal-overlay" id="areaModal" role="dialog" aria-modal="true">
+  <div class="modal-overlay" id="areaModal" role="dialog" aria-modal="true" aria-labelledby="modalAreaTitle">
     <div class="modal-content">
       <span class="crosshair crosshair-tl">+</span>
       <span class="crosshair crosshair-tr">+</span>
@@ -700,7 +703,7 @@
   </div>
 
   <!-- Toast Notification Container -->
-  <div class="toast-msg" id="toast"></div>
+  <div class="toast-msg" id="toast" role="status" aria-live="polite"></div>
 
   <!-- JavaScript Principal -->
   <script src="js/main.js"></script>

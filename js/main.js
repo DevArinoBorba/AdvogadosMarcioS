@@ -116,15 +116,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const modalOverlay = document.querySelector('.modal-overlay');
+  const modalContent = document.querySelector('.modal-content');
   const modalKicker = document.getElementById('modalAreaKicker');
   const modalTitle = document.getElementById('modalAreaTitle');
   const modalDesc = document.getElementById('modalAreaDesc');
   const modalList = document.getElementById('modalAreaList');
   const modalClose = document.querySelector('.modal-close');
+  let lastFocusedElement = null;
 
-  const openAreaModal = (areaKey) => {
+  const openAreaModal = (areaKey, updateHistory = true) => {
     const data = areasData[areaKey];
     if (!data) return;
+
+    lastFocusedElement = document.activeElement;
 
     modalKicker.textContent = data.kicker;
     modalTitle.textContent = data.title;
@@ -133,12 +137,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    if (updateHistory) {
+      try {
+        history.pushState({ modalOpen: true, area: areaKey }, '', '#area-' + areaKey);
+      } catch (e) {}
+    }
+
+    if (modalClose) {
+      modalClose.focus();
+    }
   };
 
-  const closeAreaModal = () => {
+  const closeAreaModal = (fromHistory = false) => {
+    if (!modalOverlay || !modalOverlay.classList.contains('active')) return;
     modalOverlay.classList.remove('active');
     document.body.style.overflow = '';
+
+    if (!fromHistory && window.history.state && window.history.state.modalOpen) {
+      window.history.back();
+    }
+
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      lastFocusedElement.focus();
+    }
   };
+
+  // Trapping Tab Focus inside modal
+  if (modalOverlay && modalContent) {
+    modalOverlay.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = modalContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    });
+  }
+
+  // Sincronização do Botão Voltar do Navegador (History API)
+  window.addEventListener('popstate', () => {
+    if (modalOverlay && modalOverlay.classList.contains('active')) {
+      closeAreaModal(true);
+    }
+  });
 
   document.querySelectorAll('.area-card, .quick-area-tab').forEach(el => {
     el.addEventListener('click', (e) => {
@@ -148,17 +201,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  if (modalClose) modalClose.addEventListener('click', closeAreaModal);
+  if (modalClose) modalClose.addEventListener('click', () => closeAreaModal(false));
   if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeAreaModal();
+      if (e.target === modalOverlay) closeAreaModal(false);
     });
   }
 
   // Fechar modais ao pressionar tecla ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeAreaModal();
+      closeAreaModal(false);
       closeDrawer();
     }
   });
@@ -169,6 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!toast) {
       toast = document.createElement('div');
       toast.className = 'toast-msg';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
       document.body.appendChild(toast);
     }
     toast.textContent = message;
@@ -178,17 +233,100 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4500);
   };
 
-  // --- 5. Formulário de Contato Ético ---
+  // --- 5. Formulário de Contato Ético com Validação Inline e Máscara ---
   const contactForm = document.getElementById('contactForm');
+  const nameInput = document.getElementById('formName');
+  const phoneInput = document.getElementById('formPhone');
+  const emailInput = document.getElementById('formEmail');
+  const nameError = document.getElementById('formNameError');
+  const phoneError = document.getElementById('formPhoneError');
+  const emailError = document.getElementById('formEmailError');
+
+  const setFieldError = (input, errorEl, message) => {
+    if (!input) return;
+    input.classList.add('is-invalid');
+    input.setAttribute('aria-invalid', 'true');
+    if (errorEl) {
+      errorEl.textContent = message;
+      input.setAttribute('aria-describedby', errorEl.id);
+    }
+  };
+
+  const clearFieldError = (input, errorEl) => {
+    if (!input) return;
+    input.classList.remove('is-invalid');
+    input.removeAttribute('aria-invalid');
+    if (errorEl) {
+      errorEl.textContent = '';
+      input.removeAttribute('aria-describedby');
+    }
+  };
+
+  // Máscara dinâmica de telefone brasileiro (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
+  if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 11) val = val.slice(0, 11);
+
+      if (val.length > 10) {
+        val = val.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+      } else if (val.length > 6) {
+        val = val.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+      } else if (val.length > 2) {
+        val = val.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+      } else if (val.length > 0) {
+        val = val.replace(/^(\d*)$/, '($1');
+      }
+      e.target.value = val;
+      clearFieldError(phoneInput, phoneError);
+    });
+  }
+
+  if (nameInput) {
+    nameInput.addEventListener('input', () => clearFieldError(nameInput, nameError));
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener('input', () => clearFieldError(emailInput, emailError));
+  }
+
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('formName').value.trim();
-      const phone = document.getElementById('formPhone').value.trim();
-      const area = document.getElementById('formArea').value;
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phoneDigits = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+      const email = emailInput ? emailInput.value.trim() : '';
 
-      if (!name || !phone) {
-        showToast('Por favor, informe ao menos seu nome e telefone.');
+      let hasError = false;
+      let firstInvalid = null;
+
+      if (!name || name.length < 3) {
+        setFieldError(nameInput, nameError, 'Por favor, informe seu nome completo.');
+        hasError = true;
+        if (!firstInvalid) firstInvalid = nameInput;
+      } else {
+        clearFieldError(nameInput, nameError);
+      }
+
+      if (!phoneDigits || phoneDigits.length < 10) {
+        setFieldError(phoneInput, phoneError, 'Informe um telefone válido com DDD (mínimo 10 dígitos).');
+        hasError = true;
+        if (!firstInvalid) firstInvalid = phoneInput;
+      } else {
+        clearFieldError(phoneInput, phoneError);
+      }
+
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setFieldError(emailInput, emailError, 'Informe um e-mail válido ou deixe em branco.');
+        hasError = true;
+        if (!firstInvalid) firstInvalid = emailInput;
+      } else if (emailInput) {
+        clearFieldError(emailInput, emailError);
+      }
+
+      if (hasError) {
+        if (firstInvalid) firstInvalid.focus();
+        showToast('Por favor, verifique os campos destacados.');
         return;
       }
 
