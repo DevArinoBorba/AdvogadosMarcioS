@@ -384,6 +384,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Garantia ativa de visibilidade única do logotipo institucional no cabeçalho
+    const headerWhiteLogo = document.querySelector('.site-header .brand-logo-white');
+    const headerDarkLogo = document.querySelector('.site-header .brand-logo-dark');
+    if (headerWhiteLogo && headerDarkLogo) {
+      if (theme === 'light') {
+        headerWhiteLogo.style.setProperty('display', 'none', 'important');
+        headerDarkLogo.style.setProperty('display', 'block', 'important');
+      } else {
+        headerWhiteLogo.style.setProperty('display', 'block', 'important');
+        headerDarkLogo.style.setProperty('display', 'none', 'important');
+      }
+    }
+
     if (notify) {
       showToast(theme === 'light' ? 'Tema claro ativado.' : 'Tema escuro ativado.');
     }

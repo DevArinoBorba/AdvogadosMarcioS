@@ -41,9 +41,23 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   
+  <!-- Resolução Imediata de Exibição do Logotipo por Tema (Zero Duplicação e Zero FOUC) -->
+  <style>
+    .brand-logo-dark { display: none !important; }
+    .brand-logo-white { display: block !important; }
+    html[data-theme="light"] .site-header .brand-logo-white,
+    [data-theme="light"] .brand-logo-white { display: none !important; }
+    html[data-theme="light"] .site-header .brand-logo-dark,
+    [data-theme="light"] .brand-logo-dark { display: block !important; }
+    .site-footer .brand-logo-white,
+    [data-theme="light"] .site-footer .brand-logo-white { display: block !important; }
+    .site-footer .brand-logo-dark,
+    [data-theme="light"] .site-footer .brand-logo-dark { display: none !important; }
+  </style>
+  
   <!-- Estilos Globais -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/variables.css?v=1.3">
+  <link rel="stylesheet" href="css/styles.css?v=1.3">
 </head>
 <body>
 
