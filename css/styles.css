@@ -566,14 +566,16 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   background: 
     linear-gradient(90deg, 
       var(--color-petroleo-dark) 0%, 
-      rgba(7, 26, 32, 0.96) 42%, 
-      rgba(14, 46, 56, 0.8) 65%, 
-      rgba(14, 46, 56, 0.45) 100%),
+      rgba(7, 26, 32, 0.98) 32%, 
+      rgba(14, 46, 56, 0.85) 48%, 
+      rgba(14, 46, 56, 0.35) 64%, 
+      rgba(7, 26, 32, 0.12) 78%, 
+      transparent 90%),
     linear-gradient(180deg, 
-      rgba(7, 26, 32, 0.75) 0%, 
-      transparent 25%, 
-      transparent 70%, 
-      var(--color-petroleo-dark) 100%);
+      rgba(7, 26, 32, 0.4) 0%, 
+      transparent 18%, 
+      transparent 82%, 
+      rgba(7, 26, 32, 0.6) 100%);
   transition: background var(--transition-base);
 }
 
@@ -1659,23 +1661,23 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   }
 
   .hero-bg-img {
-    object-position: 70% center;
-    opacity: 0.3;
+    object-position: 72% center;
+    opacity: 0.45;
   }
 
   .hero-bg-overlay {
     background: 
       linear-gradient(180deg, 
-        rgba(7, 26, 32, 0.88) 0%, 
-        rgba(14, 46, 56, 0.94) 55%, 
+        rgba(7, 26, 32, 0.82) 0%, 
+        rgba(14, 46, 56, 0.88) 55%, 
         var(--color-petroleo-dark) 100%);
   }
 
   [data-theme="light"] .hero-bg-overlay {
     background: 
       linear-gradient(180deg, 
-        rgba(246, 244, 239, 0.88) 0%, 
-        rgba(246, 244, 239, 0.96) 55%, 
+        rgba(246, 244, 239, 0.78) 0%, 
+        rgba(246, 244, 239, 0.86) 55%, 
         #F6F4EF 100%);
   }
 
@@ -1928,18 +1930,25 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   background-color: var(--bg-body);
 }
 
+[data-theme="light"] .hero-bg-img {
+  opacity: 1;
+  filter: contrast(1.08) brightness(0.97) saturate(1.04);
+}
+
 [data-theme="light"] .hero-bg-overlay {
   background: 
     linear-gradient(90deg, 
       #F6F4EF 0%, 
-      rgba(246, 244, 239, 0.96) 42%, 
-      rgba(246, 244, 239, 0.78) 65%, 
-      rgba(246, 244, 239, 0.45) 100%),
+      rgba(246, 244, 239, 0.98) 28%, 
+      rgba(246, 244, 239, 0.85) 42%, 
+      rgba(246, 244, 239, 0.35) 56%, 
+      rgba(246, 244, 239, 0.05) 68%, 
+      transparent 78%),
     linear-gradient(180deg, 
-      rgba(246, 244, 239, 0.7) 0%, 
-      transparent 25%, 
-      transparent 70%, 
-      #F6F4EF 100%);
+      rgba(246, 244, 239, 0.2) 0%, 
+      transparent 15%, 
+      transparent 85%, 
+      rgba(246, 244, 239, 0.3) 100%);
 }
 
 [data-theme="light"] .hero-title {
