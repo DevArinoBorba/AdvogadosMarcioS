@@ -1661,24 +1661,67 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   }
 
   .hero-bg-img {
-    object-position: 72% center;
-    opacity: 0.45;
+    object-position: 74% 30%;
+    opacity: 0.85;
+    filter: contrast(1.15) brightness(0.92) saturate(1.1);
   }
 
   .hero-bg-overlay {
     background: 
+      linear-gradient(90deg, 
+        rgba(7, 26, 32, 0.88) 0%, 
+        rgba(7, 26, 32, 0.72) 42%, 
+        rgba(7, 26, 32, 0.38) 75%, 
+        rgba(7, 26, 32, 0.15) 100%),
       linear-gradient(180deg, 
-        rgba(7, 26, 32, 0.82) 0%, 
-        rgba(14, 46, 56, 0.88) 55%, 
+        rgba(7, 26, 32, 0.45) 0%, 
+        transparent 18%, 
+        rgba(7, 26, 32, 0.22) 55%, 
+        rgba(7, 26, 32, 0.75) 82%, 
         var(--color-petroleo-dark) 100%);
   }
 
+  .hero-title {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.9);
+  }
+
+  .hero-subtitle {
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+  }
+
+  .hero-description {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  html[data-theme="light"] .hero-bg-img,
+  [data-theme="light"] .hero-bg-img {
+    opacity: 0.95;
+    filter: contrast(1.12) brightness(0.98) saturate(1.05);
+  }
+
+  html[data-theme="light"] .hero-bg-overlay,
   [data-theme="light"] .hero-bg-overlay {
     background: 
+      linear-gradient(90deg, 
+        rgba(246, 244, 239, 0.9) 0%, 
+        rgba(246, 244, 239, 0.7) 42%, 
+        rgba(246, 244, 239, 0.28) 75%, 
+        rgba(246, 244, 239, 0.08) 100%),
       linear-gradient(180deg, 
-        rgba(246, 244, 239, 0.78) 0%, 
-        rgba(246, 244, 239, 0.86) 55%, 
+        rgba(246, 244, 239, 0.35) 0%, 
+        transparent 18%, 
+        rgba(246, 244, 239, 0.2) 55%, 
+        rgba(246, 244, 239, 0.75) 82%, 
         #F6F4EF 100%);
+  }
+
+  html[data-theme="light"] .hero-title,
+  [data-theme="light"] .hero-title,
+  html[data-theme="light"] .hero-subtitle,
+  [data-theme="light"] .hero-subtitle,
+  html[data-theme="light"] .hero-description,
+  [data-theme="light"] .hero-description {
+    text-shadow: 0 1px 12px rgba(246, 244, 239, 0.85);
   }
 
   .hero-bottom-bar {
@@ -1779,6 +1822,11 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 }
 
 @media (max-width: 480px) {
+  .hero-bg-img {
+    object-position: 74% 26%;
+    opacity: 0.88;
+  }
+
   .container {
     padding-left: var(--space-sm);
     padding-right: var(--space-sm);
