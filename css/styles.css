@@ -1656,72 +1656,123 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 @media (max-width: 768px) {
   .hero-section {
     min-height: auto;
-    padding-top: calc(var(--header-height) + var(--space-xl));
+    padding-top: var(--header-height);
     padding-bottom: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Bloco de Destaque Fotográfico: reproduz exatamente o enquadramento do site original */
+  .hero-bg-media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(280px, 42vh, 330px);
+    overflow: hidden;
+    z-index: 1;
+    flex-shrink: 0;
   }
 
   .hero-bg-img {
-    object-position: 74% 30%;
-    opacity: 0.85;
-    filter: contrast(1.15) brightness(0.92) saturate(1.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 63% 50%;
+    transform: scale(1.32);
+    transform-origin: 64% 52%;
+    opacity: 1;
+    filter: contrast(1.06) brightness(1.0) saturate(1.04);
   }
 
   .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     background: 
-      linear-gradient(90deg, 
-        rgba(7, 26, 32, 0.88) 0%, 
-        rgba(7, 26, 32, 0.72) 42%, 
-        rgba(7, 26, 32, 0.38) 75%, 
-        rgba(7, 26, 32, 0.15) 100%),
       linear-gradient(180deg, 
-        rgba(7, 26, 32, 0.45) 0%, 
-        transparent 18%, 
-        rgba(7, 26, 32, 0.22) 55%, 
-        rgba(7, 26, 32, 0.75) 82%, 
+        rgba(7, 26, 32, 0.28) 0%, 
+        transparent 16%, 
+        transparent 68%, 
         var(--color-petroleo-dark) 100%);
   }
 
+  /* Card Institucional posicionado logo abaixo da ponta da caneta e assinatura */
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    margin-top: -24px;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  .hero-content {
+    background: rgba(7, 26, 32, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(198, 180, 154, 0.28);
+    border-radius: 4px;
+    padding: 24px 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
   .hero-title {
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.9);
+    font-size: clamp(1.85rem, 1.6rem + 1.8vw, 2.4rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
   }
 
   .hero-subtitle {
-    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+    font-size: 1.15rem;
+    margin-bottom: 14px;
   }
 
   .hero-description {
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
   }
 
+  /* Versão Tema Claro no Mobile */
   html[data-theme="light"] .hero-bg-img,
   [data-theme="light"] .hero-bg-img {
-    opacity: 0.95;
-    filter: contrast(1.12) brightness(0.98) saturate(1.05);
+    opacity: 1;
+    filter: contrast(1.06) brightness(1.0) saturate(1.04);
   }
 
   html[data-theme="light"] .hero-bg-overlay,
   [data-theme="light"] .hero-bg-overlay {
     background: 
-      linear-gradient(90deg, 
-        rgba(246, 244, 239, 0.9) 0%, 
-        rgba(246, 244, 239, 0.7) 42%, 
-        rgba(246, 244, 239, 0.28) 75%, 
-        rgba(246, 244, 239, 0.08) 100%),
       linear-gradient(180deg, 
-        rgba(246, 244, 239, 0.35) 0%, 
-        transparent 18%, 
-        rgba(246, 244, 239, 0.2) 55%, 
-        rgba(246, 244, 239, 0.75) 82%, 
+        rgba(246, 244, 239, 0.25) 0%, 
+        transparent 16%, 
+        transparent 68%, 
         #F6F4EF 100%);
   }
 
+  html[data-theme="light"] .hero-content,
+  [data-theme="light"] .hero-content {
+    background: rgba(246, 244, 239, 0.94);
+    border: 1px solid rgba(14, 46, 56, 0.2);
+    box-shadow: 0 16px 40px rgba(14, 46, 56, 0.12);
+  }
+
   html[data-theme="light"] .hero-title,
-  [data-theme="light"] .hero-title,
+  [data-theme="light"] .hero-title {
+    color: var(--color-petroleo);
+    text-shadow: none;
+  }
+
   html[data-theme="light"] .hero-subtitle,
-  [data-theme="light"] .hero-subtitle,
+  [data-theme="light"] .hero-subtitle {
+    color: var(--color-champagne-dark);
+    text-shadow: none;
+  }
+
   html[data-theme="light"] .hero-description,
   [data-theme="light"] .hero-description {
-    text-shadow: 0 1px 12px rgba(246, 244, 239, 0.85);
+    color: #4A555B;
+    text-shadow: none;
   }
 
   .hero-bottom-bar {
@@ -1822,9 +1873,18 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 }
 
 @media (max-width: 480px) {
+  .hero-bg-media {
+    height: 290px;
+  }
+
   .hero-bg-img {
-    object-position: 74% 26%;
-    opacity: 0.88;
+    transform: scale(1.35);
+    transform-origin: 64% 53%;
+    object-position: 63% 50%;
+  }
+
+  .hero-content {
+    padding: 20px 16px;
   }
 
   .container {
