@@ -227,11 +227,15 @@ h1, h2, h3, h4 {
 }
 
 .brand-logo-img {
-  height: 46px;
+  height: 58px;
   width: auto;
   display: block;
   object-fit: contain;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition: transform var(--transition-fast), height var(--transition-fast), opacity var(--transition-fast);
+}
+
+.site-header.scrolled .brand-logo-img {
+  height: 48px;
 }
 
 .brand-logo:hover .brand-logo-img {
@@ -261,7 +265,7 @@ html[data-theme="light"] .brand-logo-dark {
 [data-theme="light"] .site-footer .brand-logo-white,
 html[data-theme="light"] .site-footer .brand-logo-white {
   display: block !important;
-  height: 50px;
+  height: 64px;
 }
 
 .site-footer .brand-logo-dark,
@@ -864,6 +868,44 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 
 .area-card:hover .area-action {
   gap: 12px;
+}
+
+/* Card de Destaque Amplo (Correspondente Jurídico) */
+.area-card-wide {
+  grid-column: 1 / -1;
+  min-height: auto;
+}
+
+@media (min-width: 1025px) {
+  .area-card-wide {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl) var(--space-2xl);
+  }
+
+  .area-card-wide .area-card-header {
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .area-card-wide .area-title {
+    margin-bottom: 6px;
+  }
+
+  .area-card-wide .area-scope {
+    margin-bottom: 0;
+  }
+
+  .area-card-wide .area-action {
+    flex-shrink: 0;
+    white-space: nowrap;
+    justify-self: end;
+  }
 }
 
 /* ==========================================================================
@@ -1654,6 +1696,20 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 }
 
 @media (max-width: 768px) {
+  .brand-logo-img {
+    height: 50px;
+  }
+
+  .site-header.scrolled .brand-logo-img {
+    height: 44px;
+  }
+
+  .site-footer .brand-logo-white,
+  [data-theme="light"] .site-footer .brand-logo-white,
+  html[data-theme="light"] .site-footer .brand-logo-white {
+    height: 56px;
+  }
+
   .hero-section {
     min-height: auto;
     padding-top: var(--header-height);
