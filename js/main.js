@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const copySecurityBtn = document.getElementById('copySecurityInfo');
   if (copySecurityBtn) {
     copySecurityBtn.addEventListener('click', () => {
-      const securityText = 'Márcio Sandim Advogados | Sede: Av. Afonso Pena, 3504, Sala 65, Edifício Empire Center, Campo Grande/MS | Telefones Oficiais: (67) 3029-1060 e (67) 99167-2000. O escritório NÃO solicita depósitos ou transferências sem alinhamento prévio e contrato.';
+      const securityText = 'Márcio Sandim Advogados | Sede: Av. Afonso Pena, 3504, 6º Andar, Sala 65, Edifício Empire Center, Campo Grande/MS | Telefones Oficiais: (67) 3029-1060 e (67) 99167-2000. O escritório NÃO solicita depósitos ou transferências sem alinhamento prévio e contrato.';
       navigator.clipboard.writeText(securityText).then(() => {
         showToast('Dados de segurança copiados com sucesso!');
       }).catch(() => {

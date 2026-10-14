@@ -227,7 +227,7 @@ h1, h2, h3, h4 {
 }
 
 .brand-logo-img {
-  height: 58px;
+  height: 66px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -235,7 +235,7 @@ h1, h2, h3, h4 {
 }
 
 .site-header.scrolled .brand-logo-img {
-  height: 48px;
+  height: 52px;
 }
 
 .brand-logo:hover .brand-logo-img {
@@ -1451,6 +1451,22 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   color: var(--color-champagne);
 }
 
+.footer-links a.footer-link-highlight {
+  color: var(--color-champagne);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-links a.footer-link-highlight:hover {
+  color: var(--color-champagne-hover);
+  text-decoration: underline;
+}
+
 .footer-bottom {
   padding-top: var(--space-lg);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -1697,11 +1713,11 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 
 @media (max-width: 768px) {
   .brand-logo-img {
-    height: 50px;
+    height: 56px;
   }
 
   .site-header.scrolled .brand-logo-img {
-    height: 44px;
+    height: 48px;
   }
 
   .site-footer .brand-logo-white,
@@ -1773,7 +1789,7 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   }
 
   .hero-title {
-    font-size: clamp(1.85rem, 1.6rem + 1.8vw, 2.4rem);
+    font-size: clamp(1.7rem, 1.45rem + 1.5vw, 2.15rem);
     line-height: 1.15;
     margin-bottom: 12px;
   }
