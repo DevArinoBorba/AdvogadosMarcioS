@@ -1,6 +1,23 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/jayne-barbosa",
+      "destination": "/jayne-junqueira",
+      "permanent": true
+    },
+    {
+      "source": "/jayne-barbosa.html",
+      "destination": "/jayne-junqueira",
+      "permanent": true
+    },
+    {
+      "source": "/assets/images/JayneBarbosa.jpeg",
+      "destination": "/assets/images/JayneJunqueira.jpeg",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
