@@ -969,9 +969,17 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
 
 /* Grid de Membros Associados */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  --team-cols: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-lg);
+}
+
+/* Linhas incompletas ficam centralizadas (ex.: 3 + 2) */
+.team-grid > .team-card {
+  flex: 0 1 calc((100% - (var(--team-cols) - 1) * var(--space-lg)) / var(--team-cols));
+  min-width: 0;
 }
 
 .team-card {
@@ -1673,7 +1681,7 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   }
 
   .team-grid {
-    grid-template-columns: repeat(3, 1fr);
+    --team-cols: 2;
   }
 
   .pillars-grid {
@@ -1938,7 +1946,7 @@ html[data-theme="light"] .site-footer .brand-logo-dark {
   }
 
   .team-grid {
-    grid-template-columns: 1fr;
+    --team-cols: 1;
     max-width: 360px;
     margin: 0 auto;
   }
