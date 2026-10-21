@@ -2809,6 +2809,21 @@ a.pub-author:hover { color: var(--color-champagne); }
   color: var(--text-light-dim);
 }
 
+.form-file { padding: 10px; cursor: pointer; }
+
+.form-file::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--btn-primary-text);
+  background-color: var(--btn-primary-bg);
+  border: 0;
+  cursor: pointer;
+}
+
 .careers-status {
   margin-top: var(--space-sm);
   font-size: 0.9rem;

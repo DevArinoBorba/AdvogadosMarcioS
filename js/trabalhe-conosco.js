@@ -1,17 +1,17 @@
 /* ==========================================================================
-   TRABALHE CONOSCO — ENVIO DE CURRÍCULOS (Web3Forms)
+   TRABALHE CONOSCO — ENVIO DE CURRÍCULOS COM ARQUIVO
    --------------------------------------------------------------------------
-   1. Crie a chave gratuita em https://web3forms.com usando o e-mail que deve
-      receber os currículos.
-   2. Cole a chave abaixo em WEB3FORMS_ACCESS_KEY.
-   Enquanto a chave não for configurada, o formulário abre o e-mail do
-   usuário (mailto) como alternativa, para nenhum candidato ficar sem enviar.
+   Envia para a função /api/curriculo (Vercel), que repassa por e-mail via
+   Resend com o currículo em anexo. Configuração (chaves, e-mails) fica nas
+   variáveis de ambiente da Vercel — nada sensível neste arquivo.
    ========================================================================== */
 (function () {
   'use strict';
 
-  const WEB3FORMS_ACCESS_KEY = '643a8f4c-3cd5-4044-a84c-914e1c3d1c90';
+  const ENDPOINT = '/api/curriculo';
   const EMAIL_FALLBACK = 'contato@marciosandim.com';
+  const MAX_BYTES = 3 * 1024 * 1024; // manter igual ao limite da API
+  const EXTENSOES = ['pdf', 'doc', 'docx'];
 
   const form = document.getElementById('careersForm');
   if (!form) return;
@@ -22,7 +22,7 @@
     email: $('cvEmail'),
     telefone: $('cvPhone'),
     area: $('cvArea'),
-    link: $('cvLink'),
+    arquivo: $('cvFile'),
     consent: $('cvConsent')
   };
   const status = $('careersStatus');
@@ -41,25 +41,41 @@
     if (el) { el.textContent = ''; input.removeAttribute('aria-describedby'); }
   };
 
-  Object.values(campos).forEach((c) => c && c.addEventListener('input', () => limpaErro(c)));
-  if (campos.consent) campos.consent.addEventListener('change', () => limpaErro(campos.consent));
+  Object.values(campos).forEach((c) => {
+    if (!c) return;
+    c.addEventListener('input', () => limpaErro(c));
+    c.addEventListener('change', () => limpaErro(c));
+  });
 
   // Máscara de telefone (mesmo padrão do formulário de contato)
-  if (campos.telefone) {
-    campos.telefone.addEventListener('input', (e) => {
-      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
-      if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-      else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
-      else if (v.length > 2) v = v.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
-      else if (v.length > 0) v = '(' + v;
-      e.target.value = v;
-    });
-  }
+  campos.telefone.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+    else if (v.length > 2) v = v.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+    else if (v.length > 0) v = '(' + v;
+    e.target.value = v;
+  });
 
   const mostrarStatus = (msg, tipo) => {
     status.textContent = msg;
     status.className = 'careers-status is-' + tipo;
   };
+
+  const erroArquivo = (file) => {
+    if (!file) return 'Anexe seu currículo.';
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    if (!EXTENSOES.includes(ext)) return 'Formato não aceito. Envie PDF, DOC ou DOCX.';
+    if (file.size > MAX_BYTES) return `Arquivo muito grande (${(file.size / 1048576).toFixed(1)} MB). Limite: 3 MB.`;
+    if (file.size === 0) return 'O arquivo está vazio.';
+    return '';
+  };
+
+  // Validação imediata ao escolher o arquivo
+  campos.arquivo.addEventListener('change', () => {
+    const msg = erroArquivo(campos.arquivo.files[0]);
+    if (msg) setErro(campos.arquivo, msg);
+  });
 
   const validar = () => {
     let primeiro = null;
@@ -69,13 +85,20 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(campos.email.value.trim())) marca(campos.email, 'Informe um e-mail válido.');
     if (campos.telefone.value.replace(/\D/g, '').length < 10) marca(campos.telefone, 'Informe um telefone com DDD.');
     if (!campos.area.value) marca(campos.area, 'Selecione a vaga ou área de interesse.');
-    const link = campos.link.value.trim();
-    if (!/^https?:\/\/\S+\.\S+/i.test(link)) marca(campos.link, 'Cole um link válido (Google Drive, Dropbox ou LinkedIn).');
+    const msgArq = erroArquivo(campos.arquivo.files[0]);
+    if (msgArq) marca(campos.arquivo, msgArq);
     if (!campos.consent.checked) marca(campos.consent, 'É necessário autorizar o tratamento dos dados.');
 
     if (primeiro) primeiro.focus();
     return !primeiro;
   };
+
+  const lerBase64 = (file) => new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).split(',')[1] || '');
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(file);
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -84,43 +107,37 @@
       return;
     }
 
-    const data = new FormData(form);
-    const areaTxt = campos.area.options[campos.area.selectedIndex].text;
-
-    // Sem chave configurada: alternativa por e-mail
-    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith('COLE_AQUI')) {
-      const corpo = [
-        `Nome: ${data.get('nome')}`,
-        `E-mail: ${data.get('email')}`,
-        `Telefone: ${data.get('telefone')}`,
-        `Área: ${areaTxt}`,
-        `OAB: ${data.get('oab') || '-'}`,
-        `Currículo: ${data.get('curriculo')}`,
-        '',
-        data.get('mensagem') || ''
-      ].join('\n');
-      window.location.href = `mailto:${EMAIL_FALLBACK}?subject=${encodeURIComponent('Currículo - ' + areaTxt)}&body=${encodeURIComponent(corpo)}`;
-      mostrarStatus('Abrimos seu aplicativo de e-mail com os dados preenchidos. Basta enviar.', 'success');
-      return;
-    }
-
-    data.append('access_key', WEB3FORMS_ACCESS_KEY);
-    data.append('subject', `Novo currículo - ${areaTxt} - ${data.get('nome')}`);
-    data.append('from_name', 'Site Márcio Sandim Advogados');
-    data.set('area', areaTxt);
-
     const txtOriginal = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = 'Enviando...';
+    mostrarStatus('', 'info');
 
     try {
-      const resp = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-      const json = await resp.json();
-      if (!resp.ok || !json.success) throw new Error(json.message || 'Falha no envio');
+      const file = campos.arquivo.files[0];
+      const payload = {
+        nome: campos.nome.value.trim(),
+        email: campos.email.value.trim(),
+        telefone: campos.telefone.value.trim(),
+        area: campos.area.value,
+        oab: $('cvOab').value.trim(),
+        mensagem: $('cvMessage').value.trim(),
+        consentimento: campos.consent.checked,
+        website: $('cvWebsite').value,
+        arquivo: { nome: file.name, base64: await lerBase64(file) }
+      };
+
+      const resp = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const json = await resp.json().catch(() => ({}));
+      if (!resp.ok || !json.ok) throw new Error(json.erro || 'Falha no envio');
+
       form.reset();
       mostrarStatus('Currículo enviado com sucesso! Entraremos em contato caso seu perfil seja selecionado.', 'success');
     } catch (err) {
-      mostrarStatus(`Não foi possível enviar agora. Tente novamente ou envie para ${EMAIL_FALLBACK}.`, 'error');
+      mostrarStatus(`Não foi possível enviar agora. Tente novamente em instantes ou envie para ${EMAIL_FALLBACK}.`, 'error');
     } finally {
       btn.disabled = false;
       btn.innerHTML = txtOriginal;
