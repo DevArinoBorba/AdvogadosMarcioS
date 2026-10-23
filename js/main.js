@@ -22,20 +22,60 @@ document.addEventListener('DOMContentLoaded', () => {
   const drawerClose = document.querySelector('.drawer-close');
   const drawerLinks = document.querySelectorAll('.drawer-link');
 
+  let drawerLastFocused = null;
+
   const openDrawer = () => {
+    if (!mobileDrawer) return;
+    drawerLastFocused = document.activeElement;
+    mobileDrawer.removeAttribute('inert');
     mobileDrawer.classList.add('active');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    // Foco no botão de fechar após o drawer estar visível
+    requestAnimationFrame(() => {
+      if (drawerClose) drawerClose.focus();
+    });
   };
 
   const closeDrawer = () => {
+    if (!mobileDrawer || !mobileDrawer.classList.contains('active')) return;
+    const focusWasInside = mobileDrawer.contains(document.activeElement);
     mobileDrawer.classList.remove('active');
+    mobileDrawer.setAttribute('inert', '');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    // Devolve o foco ao botão do menu se ele estava dentro do drawer
+    const retorno = menuToggle || drawerLastFocused;
+    if (focusWasInside && retorno && typeof retorno.focus === 'function') retorno.focus();
   };
 
   if (menuToggle && mobileDrawer) {
     menuToggle.addEventListener('click', openDrawer);
     if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
     drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+    // Trap de foco (Tab) enquanto o drawer estiver aberto
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !mobileDrawer.classList.contains('active')) return;
+      const focusable = Array.from(mobileDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.disabled);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const dentro = mobileDrawer.contains(document.activeElement);
+
+      if (e.shiftKey) {
+        if (!dentro || document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (!dentro || document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    });
   }
 
   // --- 3. Modal de Detalhamento das 13 Áreas de Atuação ---
@@ -165,15 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     '11': {
-      title: 'Direito Administrativo',
-      kicker: 'ÁREA 11 · SERVIDORES & CORREGEDORIAS',
-      desc: 'Atuação na área administrativa, especialmente em procedimentos instaurados em desfavor de servidores públicos, com atendimento especializado em âmbito de corregedorias: Polícia Civil, Polícia Militar, Polícia Rodoviária Federal, Polícia Federal, dentre outras.',
+      title: 'Direito Público & Administrativo',
+      kicker: 'ÁREA 11 · SERVIDORES, CORREGEDORIAS & GESTÃO PÚBLICA',
+      desc: 'Atuação especializada e de vanguarda no âmbito do Direito Público e Administrativo, com ênfase na defesa contenciosa de servidores públicos, entidades de classe (como o SINPOL/MS) e policiais perante Corregedorias-Gerais, sindicâncias, processos disciplinares (PADs) e ações judiciais perante todas as instâncias.',
       scope: [
-        'Defesa técnica especializada em procedimentos disciplinares contra servidores públicos;',
-        'Atuação especializada perante Corregedorias da Polícia Civil e Polícia Militar;',
-        'Atuação em Corregedorias da Polícia Rodoviária Federal e Polícia Federal;',
-        'Acompanhamento de sindicâncias, inquéritos civis e Processos Administrativos Disciplinares (PAD);',
-        'Ações judiciais anulatória de penalidades, mandados de segurança e reintegração de cargo.'
+        'Defesa técnica especializada de servidores públicos perante Corregedorias (Polícia Civil, Militar, PRF e PF);',
+        'Acompanhamento e sustentação em Sindicâncias, Inquéritos e Processos Administrativos Disciplinares (PADs);',
+        'Assessoria e representação contenciosa de entidades de classe e sindicatos (com destaque ao SINPOL/MS);',
+        'Ações judiciais anulatórias de penalidades disciplinares, reintegração de cargo e preservação de direitos;',
+        'Impetração de Mandados de Segurança individuais e coletivos perante Tribunais e Cortes Superiores;',
+        'Consultoria em licitações públicas, contratos administrativos e direito sancionador.'
       ]
     },
     '12': {
@@ -203,6 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Alias para acesso direto pelo card de acesso rápido
+  areasData['publico'] = areasData['11'];
+
   const modalOverlay = document.querySelector('.modal-overlay');
   const modalContent = document.querySelector('.modal-content');
   const modalKicker = document.getElementById('modalAreaKicker');
@@ -213,15 +257,23 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastFocusedElement = null;
 
   const openAreaModal = (areaKey, updateHistory = true) => {
+    if (!modalOverlay) return;
     const data = areasData[areaKey];
     if (!data) return;
 
     lastFocusedElement = document.activeElement;
 
-    modalKicker.textContent = data.kicker;
-    modalTitle.textContent = data.title;
-    modalDesc.textContent = data.desc;
-    modalList.innerHTML = data.scope.map(item => `<li>${item}</li>`).join('');
+    if (modalKicker) modalKicker.textContent = data.kicker;
+    if (modalTitle) modalTitle.textContent = data.title;
+    if (modalDesc) modalDesc.textContent = data.desc;
+    if (modalList) {
+      modalList.textContent = '';
+      data.scope.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        modalList.appendChild(li);
+      });
+    }
 
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -290,6 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (modalClose) modalClose.addEventListener('click', () => closeAreaModal(false));
+  // Botões de fechar secundários (ex.: "Fechar" no rodapé do modal)
+  document.querySelectorAll('[data-modal-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeAreaModal(false));
+  });
   if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) closeAreaModal(false);
@@ -378,6 +434,13 @@ document.addEventListener('DOMContentLoaded', () => {
     emailInput.addEventListener('input', () => clearFieldError(emailInput, emailError));
   }
 
+  // Consentimento de uso dos dados (checkbox obrigatório)
+  const consentInput = document.getElementById('formConsent');
+  const consentError = document.getElementById('formConsentError');
+  if (consentInput) {
+    consentInput.addEventListener('change', () => clearFieldError(consentInput, consentError));
+  }
+
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -410,6 +473,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!firstInvalid) firstInvalid = emailInput;
       } else if (emailInput) {
         clearFieldError(emailInput, emailError);
+      }
+
+      if (consentInput && !consentInput.checked) {
+        setFieldError(consentInput, consentError, 'Para continuar, autorize o uso dos seus dados para retorno do atendimento.');
+        hasError = true;
+        if (!firstInvalid) firstInvalid = consentInput;
+      } else if (consentInput) {
+        clearFieldError(consentInput, consentError);
       }
 
       if (hasError) {
@@ -460,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Tenta abrir em nova aba; se bloqueado pelo navegador, redireciona diretamente
       const win = window.open(whatsappUrl, '_blank');
-      if (!win || win.closed || typeof win.closed === 'undefined') {
+      if (!win) {
         window.location.href = whatsappUrl;
       }
 
@@ -480,11 +551,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (copySecurityBtn) {
     copySecurityBtn.addEventListener('click', () => {
       const securityText = 'Márcio Sandim Advogados | Sede: Av. Afonso Pena, 3504, 6º Andar, Sala 65, Edifício Empire Center, Campo Grande/MS | Telefones Oficiais: (67) 3029-1060 e (67) 99167-2000. O escritório NÃO solicita depósitos ou transferências sem alinhamento prévio e contrato.';
+      const mostrarFallback = () => {
+        showToast('Telefones oficiais: (67) 3029-1060 / (67) 99167-2000');
+      };
+      // Navegadores sem Clipboard API (ou contexto não seguro) usam o fallback direto
+      if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        mostrarFallback();
+        return;
+      }
       navigator.clipboard.writeText(securityText).then(() => {
         showToast('Dados de segurança copiados com sucesso!');
-      }).catch(() => {
-        showToast('Telefones oficiais: (67) 3029-1060 / (67) 99167-2000');
-      });
+      }).catch(mostrarFallback);
     });
   }
 
@@ -513,28 +590,16 @@ document.addEventListener('DOMContentLoaded', () => {
       metaColorScheme.content = theme === 'light' ? 'light dark' : 'dark light';
     }
 
-    // Atualiza atributos de acessibilidade nos botões
+    // Atualiza o título e o texto acessível dos botões (aria-pressed removido: o rótulo muda com o tema)
     themeToggles.forEach(btn => {
-      btn.setAttribute('aria-pressed', theme === 'light');
-      btn.setAttribute('title', theme === 'light' ? 'Mudar para modo escuro' : 'Mudar para modo claro');
+      btn.removeAttribute('aria-pressed');
+      const rotulo = theme === 'light' ? 'Mudar para modo escuro' : 'Mudar para modo claro';
+      btn.setAttribute('title', rotulo);
       const srText = btn.querySelector('.theme-toggle-sr');
       if (srText) {
-        srText.textContent = theme === 'light' ? 'Mudar para modo escuro' : 'Mudar para modo claro';
+        srText.textContent = rotulo;
       }
     });
-
-    // Garantia ativa de visibilidade única do logotipo institucional no cabeçalho
-    const headerWhiteLogo = document.querySelector('.site-header .brand-logo-white');
-    const headerDarkLogo = document.querySelector('.site-header .brand-logo-dark');
-    if (headerWhiteLogo && headerDarkLogo) {
-      if (theme === 'light') {
-        headerWhiteLogo.style.setProperty('display', 'none', 'important');
-        headerDarkLogo.style.setProperty('display', 'block', 'important');
-      } else {
-        headerWhiteLogo.style.setProperty('display', 'block', 'important');
-        headerDarkLogo.style.setProperty('display', 'none', 'important');
-      }
-    }
 
     if (notify) {
       showToast(theme === 'light' ? 'Tema claro ativado.' : 'Tema escuro ativado.');
@@ -553,11 +618,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Observa mudanças de preferência do sistema operacional
   if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-      if (!localStorage.getItem('sandim_theme')) {
+    const mqLight = window.matchMedia('(prefers-color-scheme: light)');
+    const onSchemeChange = (e) => {
+      let temPreferenciaSalva = null;
+      try {
+        temPreferenciaSalva = localStorage.getItem('sandim_theme');
+      } catch (err) {}
+      if (!temPreferenciaSalva) {
         applyTheme(e.matches ? 'light' : 'dark', false);
       }
-    });
+    };
+    // Safari < 14 só suporta addListener
+    if (mqLight.addEventListener) {
+      mqLight.addEventListener('change', onSchemeChange);
+    } else if (mqLight.addListener) {
+      mqLight.addListener(onSchemeChange);
+    }
   }
 });
 

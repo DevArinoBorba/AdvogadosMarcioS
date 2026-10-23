@@ -25,6 +25,7 @@
   --color-champagne-hover: #D8C7B0;  /* Hover suave do acento */
   --color-champagne-alpha: rgba(198, 180, 154, 0.15);
   --color-champagne-border: rgba(198, 180, 154, 0.35);
+  --color-champagne-dark: #7A5F38;   /* Champagne escuro para fundos claros */
 
   /* --- Superfícies e Fundos Semânticos (Escuro) --- */
   --bg-body: var(--color-petroleo);
@@ -47,7 +48,9 @@
   --text-headings: #FFFFFF;
   --text-light: #F4F2ED;
   --text-light-muted: rgba(244, 242, 237, 0.75);
-  --text-light-dim: rgba(244, 242, 237, 0.45);
+  --text-light-dim: rgba(244, 242, 237, 0.65);
+  --text-mineral: #9EA3A8;           /* Mineral legível como TEXTO (AA) */
+  --color-error: #E57373;            /* Erros de formulário (tema escuro) */
   --text-dark: #2A2F33;
   --text-dark-muted: #5C6268;
   --text-accent: var(--color-champagne);
@@ -161,11 +164,13 @@
   --text-headings: #0E2E38;           /* Azul Petróleo Profundo nos títulos */
   --text-light: #232D33;               /* Grafite escuro legível (contraste AAA) */
   --text-light-muted: #525E65;         /* Mineral escuro (contraste 7:1+) */
-  --text-light-dim: #7C8890;
+  --text-light-dim: #5C676E;
+  --text-mineral: #5C6268;
   --text-dark: #232D33;
   --text-dark-muted: #525E65;
-  --text-accent: #876C42;              /* Champagne escurecido com alto contraste AA (4.5:1+) */
+  --text-accent: #7A5F38;              /* Champagne escurecido com alto contraste AA (4.5:1+) */
   --text-accent-hover: #6B5532;
+  --color-error: #B3261E;             /* Erros de formulário (tema claro) */
 
   --color-champagne: #876C42;
   --color-champagne-hover: #6B5532;

@@ -20,23 +20,37 @@
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
+  // Só aceita links http(s), caminhos internos, páginas .html do site e âncoras; o restante vira '#'
+  const URL_PERMITIDA = /^(https?:\/\/|\/|[a-z0-9-]+\.html(#.*)?$|#)/i;
+  const urlSegura = (u) => {
+    const valor = String(u == null ? '' : u).trim();
+    return URL_PERMITIDA.test(valor) ? valor : '#';
+  };
+
   const ROTULO = { artigo: 'Artigo', imprensa: 'Na Imprensa' };
 
   const card = (p) => {
-    const externo = p.url && p.url !== '#' && /^https?:/i.test(p.url);
+    const url = urlSegura(p.url || '#');
+    const externo = url !== '#' && /^https?:\/\//i.test(url);
     const cta = p.tipo === 'imprensa'
       ? `Ler no ${esc(p.veiculo || 'veículo')}`
       : 'Ler artigo';
     const autor = p.autor
       ? (p.perfil
-        ? `<a href="${esc(p.perfil)}" class="pub-author">${esc(p.autor)}</a>`
+        ? `<a href="${esc(urlSegura(p.perfil))}" class="pub-author" title="Ver perfil de ${esc(p.autor)}">${esc(p.autor)}</a>`
         : `<span class="pub-author">${esc(p.autor)}</span>`)
       : (p.veiculo ? `<span class="pub-author">${esc(p.veiculo)}</span>` : '');
+
+    const veiculoMeta = p.veiculo
+      ? `<span class="pub-source">${esc(p.veiculo)}</span>`
+      : '';
 
     return `
       <article class="pub-card" data-tipo="${esc(p.tipo)}">
         <div class="pub-meta">
           <span class="pub-type pub-type-${esc(p.tipo)}">${esc(ROTULO[p.tipo] || 'Publicação')}</span>
+          ${veiculoMeta ? `<span class="pub-meta-divider" aria-hidden="true">&bull;</span>${veiculoMeta}` : ''}
+          <span class="pub-meta-divider" aria-hidden="true">&bull;</span>
           <time datetime="${esc(p.data)}">${esc(formatarData(p.data))}</time>
           ${p.rascunho ? '<span class="pub-draft" title="Conteúdo de exemplo — substituir">Exemplo</span>' : ''}
         </div>
@@ -44,7 +58,7 @@
         <p class="pub-summary">${esc(p.resumo)}</p>
         <div class="pub-footer">
           ${autor}
-          <a href="${esc(p.url || '#')}" class="pub-cta"${externo ? ' target="_blank" rel="noopener"' : ''}>
+          <a href="${esc(url)}" class="pub-cta"${externo ? ' target="_blank" rel="noopener"' : ''}>
             ${cta} <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -53,20 +67,39 @@
 
   const vazio = '<p class="pub-empty">Nenhuma publicação nesta categoria ainda.</p>';
 
-  // Prévia da Home
+  // Prévia da Home (exibe as publicações mais recentes)
   const home = document.getElementById('publicacoesHome');
   if (home) {
-    const recentes = dados.slice(0, 3);
+    const recentes = dados.slice(0, 4);
     home.innerHTML = recentes.length ? recentes.map(card).join('') : vazio;
+  }
+
+  // Seção de publicações em perfil de autor (ex.: patricia-azevedo.html)
+  const perfilGrid = document.getElementById('publicacoesPerfil');
+  if (perfilGrid) {
+    const autorFiltro = (perfilGrid.dataset.autor || '').toLowerCase();
+    const filtrados = autorFiltro
+      ? dados.filter((p) => (p.autor || '').toLowerCase().includes(autorFiltro))
+      : dados;
+    perfilGrid.innerHTML = filtrados.length ? filtrados.map(card).join('') : vazio;
   }
 
   // Página completa com filtros
   const grid = document.getElementById('publicacoesGrid');
   if (grid) {
     const filtros = document.querySelectorAll('.pub-filter');
+    const status = document.getElementById('publicacoesStatus');
     const render = (tipo) => {
       const lista = tipo === 'todos' ? dados : dados.filter((p) => p.tipo === tipo);
       grid.innerHTML = lista.length ? lista.map(card).join('') : vazio;
+      if (status) {
+        const n = lista.length;
+        status.textContent = n === 0
+          ? 'Nenhuma publicação encontrada'
+          : n === 1
+            ? '1 publicação encontrada'
+            : `${n} publicações encontradas`;
+      }
     };
 
     filtros.forEach((btn) => {

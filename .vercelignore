@@ -1,8 +1,9 @@
 # Arquivos de desenvolvimento local e documentos pesados
-server.js
 *.pptx
 .git/
 .github/
 .impeccable/
+graft/
+scratch/
 IDENTIDADE_VISUAL.md
 *.log

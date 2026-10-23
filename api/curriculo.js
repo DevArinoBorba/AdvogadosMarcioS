@@ -30,6 +30,35 @@ const esc = (s) => String(s == null ? '' : s)
 
 const limpa = (s, max) => String(s == null ? '' : s).replace(/[\r\n]+/g, ' ').trim().slice(0, max);
 
+// Origens permitidas (hostname do cabeçalho Origin)
+const HOSTS_PERMITIDOS = ['marciosandim.com', 'www.marciosandim.com', 'localhost', '127.0.0.1'];
+const origemPermitida = (origin) => {
+  let host;
+  try { host = new URL(origin).hostname; } catch { return false; }
+  return HOSTS_PERMITIDOS.includes(host) || host.endsWith('.vercel.app');
+};
+
+// Limite simples por IP (best effort): o Map vive na memória de cada instância,
+// então o limite não é global entre instâncias. Contém abuso casual, não substitui WAF.
+const RATE_JANELA_MS = 10 * 60 * 1000; // 10 minutos
+const RATE_MAX = 5;                    // requisições por IP na janela
+const tentativas = new Map();
+const excedeuLimite = (ip) => {
+  const agora = Date.now();
+  if (tentativas.size > 1000) {
+    for (const [chave, reg] of tentativas) {
+      if (agora - reg.inicio > RATE_JANELA_MS) tentativas.delete(chave);
+    }
+  }
+  const reg = tentativas.get(ip);
+  if (!reg || agora - reg.inicio > RATE_JANELA_MS) {
+    tentativas.set(ip, { inicio: agora, count: 1 });
+    return false;
+  }
+  reg.count += 1;
+  return reg.count > RATE_MAX;
+};
+
 // Confere a assinatura real do arquivo, não só a extensão
 function assinaturaValida(buf, ext) {
   if (ext === 'pdf') return buf.slice(0, 4).toString('latin1') === '%PDF';
@@ -43,6 +72,21 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ ok: false, erro: 'Método não permitido.' });
+  }
+
+  const origin = req.headers.origin;
+  if (origin && !origemPermitida(origin)) {
+    return res.status(403).json({ ok: false, erro: 'Requisição não permitida.' });
+  }
+
+  const contentType = String(req.headers['content-type'] || '').split(';')[0].trim().toLowerCase();
+  if (contentType !== 'application/json') {
+    return res.status(415).json({ ok: false, erro: 'Tipo de conteúdo não suportado.' });
+  }
+
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'desconhecido';
+  if (excedeuLimite(ip)) {
+    return res.status(429).json({ ok: false, erro: 'Muitas tentativas. Aguarde alguns minutos e tente novamente.' });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -64,7 +108,7 @@ module.exports = async (req, res) => {
   const email = limpa(b.email, 160);
   const telefone = limpa(b.telefone, 30);
   const oab = limpa(b.oab, 40);
-  const area = AREAS[b.area];
+  const area = Object.prototype.hasOwnProperty.call(AREAS, b.area) ? AREAS[b.area] : undefined;
   const mensagem = String(b.mensagem || '').trim().slice(0, 3000);
 
   const erros = [];
@@ -78,7 +122,8 @@ module.exports = async (req, res) => {
   const nomeArq = limpa(arq.nome, 120).replace(/[^\w.\- ()À-ú]/g, '_');
   const ext = (nomeArq.split('.').pop() || '').toLowerCase();
   let buf = null;
-  if (!TIPOS[ext] || typeof arq.base64 !== 'string') {
+  const tipoConhecido = Object.prototype.hasOwnProperty.call(TIPOS, ext);
+  if (!tipoConhecido || typeof arq.base64 !== 'string') {
     erros.push('arquivo');
   } else {
     buf = Buffer.from(arq.base64, 'base64');
@@ -114,7 +159,9 @@ module.exports = async (req, res) => {
         subject: `Currículo - ${area} - ${nome}`,
         html,
         attachments: [{ filename: nomeArq, content: buf.toString('base64') }]
-      })
+      }),
+      // Evita que a função fique presa aguardando a Resend (timeout de 10 s)
+      signal: AbortSignal.timeout(10000)
     });
     if (!r.ok) {
       console.error('curriculo: Resend respondeu', r.status, await r.text());

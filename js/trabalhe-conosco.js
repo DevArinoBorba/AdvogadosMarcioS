@@ -132,12 +132,40 @@
         body: JSON.stringify(payload)
       });
       const json = await resp.json().catch(() => ({}));
-      if (!resp.ok || !json.ok) throw new Error(json.erro || 'Falha no envio');
+      if (!resp.ok || !json.ok) {
+        const erro = new Error(json.erro || 'Falha no envio');
+        // A API devolve os campos inválidos em "campos" (ex.: ["email", "consentimento"])
+        erro.campos = Array.isArray(json.campos) ? json.campos : null;
+        throw erro;
+      }
 
       form.reset();
       mostrarStatus('Currículo enviado com sucesso! Entraremos em contato caso seu perfil seja selecionado.', 'success');
     } catch (err) {
-      mostrarStatus(`Não foi possível enviar agora. Tente novamente em instantes ou envie para ${EMAIL_FALLBACK}.`, 'error');
+      const mapaCampos = {
+        nome: [campos.nome, 'Informe seu nome completo.'],
+        email: [campos.email, 'Informe um e-mail válido.'],
+        telefone: [campos.telefone, 'Informe um telefone com DDD.'],
+        area: [campos.area, 'Selecione a vaga ou área de interesse.'],
+        arquivo: [campos.arquivo, 'Anexe um currículo em PDF, DOC ou DOCX de até 3 MB.'],
+        consentimento: [campos.consent, 'É necessário autorizar o tratamento dos dados.']
+      };
+      let primeiro = null;
+      if (err && err.campos) {
+        err.campos.forEach((nomeCampo) => {
+          const par = Object.prototype.hasOwnProperty.call(mapaCampos, nomeCampo) ? mapaCampos[nomeCampo] : null;
+          if (par && par[0]) {
+            setErro(par[0], par[1]);
+            if (!primeiro) primeiro = par[0];
+          }
+        });
+      }
+      if (primeiro) {
+        primeiro.focus();
+        mostrarStatus('Verifique os campos destacados.', 'error');
+      } else {
+        mostrarStatus(`Não foi possível enviar agora. Tente novamente em instantes ou envie para ${EMAIL_FALLBACK}.`, 'error');
+      }
     } finally {
       btn.disabled = false;
       btn.innerHTML = txtOriginal;

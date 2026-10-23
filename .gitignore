@@ -1,7 +1,8 @@
 # Dependências e caches locais
 node_modules/
 .impeccable/
-server.js
+graft/
+scratch/
 
 # Sistema operacional
 .DS_Store
@@ -11,3 +12,7 @@ desktop.ini
 # Logs
 *.log
 .vercel
+
+# Documentos pesados (apresentações)
+# Obs.: arquivos já versionados continuam no git; para removê-los do índice use `git rm --cached <arquivo>`.
+*.pptx
