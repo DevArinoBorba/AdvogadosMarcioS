@@ -341,6 +341,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Cards de área são <div>: tornam-se focáveis e acionáveis por teclado
+  document.querySelectorAll('.area-card').forEach(card => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    const title = card.querySelector('.area-title');
+    if (title) card.setAttribute('aria-label', title.textContent.trim() + ': ver escopo completo');
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
   if (modalClose) modalClose.addEventListener('click', () => closeAreaModal(false));
   // Botões de fechar secundários (ex.: "Fechar" no rodapé do modal)
   document.querySelectorAll('[data-modal-close]').forEach(btn => {
@@ -635,5 +649,32 @@ document.addEventListener('DOMContentLoaded', () => {
       mqLight.addListener(onSchemeChange);
     }
   }
-});
 
+  // --- 8. Mapa sob demanda (só carrega o iframe do Google ao tocar) ---
+  const mapFacade = document.getElementById('mapFacade');
+  if (mapFacade) {
+    mapFacade.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.className = 'map-frame';
+      iframe.src = mapFacade.dataset.src;
+      iframe.title = 'Localização Márcio Sandim Advogados';
+      iframe.loading = 'lazy';
+      mapFacade.replaceWith(iframe);
+      iframe.focus();
+    }, { once: true });
+  }
+
+  // --- 9. Barra de ação mobile: aparece após o hero e some na seção de contato ---
+  const ctaBar = document.getElementById('mobileCtaBar');
+  const heroSection = document.getElementById('hero');
+  const contactSection = document.getElementById('contato');
+  if (ctaBar && heroSection && 'IntersectionObserver' in window) {
+    let heroVisible = true;
+    let contactVisible = false;
+    const updateBar = () => ctaBar.classList.toggle('is-visible', !heroVisible && !contactVisible);
+    new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; updateBar(); }).observe(heroSection);
+    if (contactSection) {
+      new IntersectionObserver(([entry]) => { contactVisible = entry.isIntersecting; updateBar(); }, { threshold: 0.15 }).observe(contactSection);
+    }
+  }
+});

@@ -204,3 +204,11 @@
   --shadow-elevated: 0 10px 24px rgba(14, 46, 56, 0.12);
   --shadow-btn-hover: 0 4px 16px rgba(14, 46, 56, 0.25);
 }
+
+/* Ritmo vertical mais curto no celular (seções usam --space-3xl / --space-4xl) */
+@media (max-width: 768px) {
+  :root {
+    --space-3xl: 64px;
+    --space-4xl: 72px;
+  }
+}

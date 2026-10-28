@@ -56,8 +56,8 @@
   
   <link rel="preload" as="image" type="image/webp" imagesrcset="assets/images/hero-bg-960.webp 960w, assets/images/hero-bg-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
   <!-- Estilos Globais -->
-  <link rel="stylesheet" href="css/variables.css?v=2.1">
-  <link rel="stylesheet" href="css/styles.css?v=3.4">
+  <link rel="stylesheet" href="css/variables.css?v=2.2">
+  <link rel="stylesheet" href="css/styles.css?v=3.10">
 </head>
 <body>
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
@@ -77,7 +77,7 @@
         <ul class="nav-menu">
           <li><a href="#sobre" class="nav-link">O Escritório</a></li>
           <li><a href="#areas" class="nav-link">Áreas de Atuação</a></li>
-          <li><a href="#equipe" class="nav-link">Corpo Jurídico</a></li>
+          <li><a href="corpo-juridico.html" class="nav-link">Corpo Jurídico</a></li>
           <li><a href="#clientes" class="nav-link">Clientes</a></li>
           <li><a href="publicacoes.html" class="nav-link">Publicações</a></li>
           <li><a href="#estrutura" class="nav-link">Sede</a></li>
@@ -129,7 +129,7 @@
     <ul class="drawer-nav">
       <li><a href="#sobre" class="drawer-link">01 · O Escritório <span aria-hidden="true">&rarr;</span></a></li>
       <li><a href="#areas" class="drawer-link">02 · Áreas de Atuação <span aria-hidden="true">&rarr;</span></a></li>
-      <li><a href="#equipe" class="drawer-link">03 · Corpo Jurídico <span aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="corpo-juridico.html" class="drawer-link">03 · Corpo Jurídico <span aria-hidden="true">&rarr;</span></a></li>
       <li><a href="#clientes" class="drawer-link">04 · Clientes &amp; Entidades <span aria-hidden="true">&rarr;</span></a></li>
       <li><a href="publicacoes.html" class="drawer-link">05 · Publicações <span aria-hidden="true">&rarr;</span></a></li>
       <li><a href="#estrutura" class="drawer-link">06 · Sede &amp; Localização <span aria-hidden="true">&rarr;</span></a></li>
@@ -473,147 +473,33 @@
     </section>
 
     <!-- ==========================================================================
-         SEÇÃO CORPO JURÍDICO & LIDERANÇA
+         SEÇÃO SÓCIO FUNDADOR (destaque) → Corpo Jurídico completo em corpo-juridico.html
          ========================================================================== -->
-    <section class="section-team" id="equipe">
-      <div class="container">
-        <span class="kicker">Corpo Jurídico</span>
-        <h2 class="section-title">Liderança &amp; Advogados Associados</h2>
-        <p class="section-subtitle">Profissionais com sólida formação técnica e dedicação exclusiva a cada uma de nossas áreas de atuação.</p>
+    <section class="section-team section-founder" id="equipe">
+      <div class="container founder">
+        <figure class="founder-photo">
+          <picture>
+            <source srcset="assets/images/marcio-sandim-destaque-768.webp 768w, assets/images/marcio-sandim-destaque-1280.webp 1280w, assets/images/marcio-sandim-destaque-1536.webp 1536w" sizes="(max-width: 1024px) 92vw, 640px" type="image/webp">
+            <img src="assets/images/marcio-sandim-destaque.jpg" alt="Dr. Márcio Sandim, Sócio Titular e Fundador, em seu gabinete no escritório Márcio Sandim Advogados" width="1536" height="1024" loading="lazy" decoding="async">
+          </picture>
+        </figure>
 
-        <!-- Destaque Sócio Fundador -->
-        <div class="leader-card">
-          <div class="leader-photo">
-            <a href="marcio-sandim.html" title="Acessar trajetória e perfil completo do Dr. Márcio Sandim">
-              <picture>
-                <source srcset="assets/images/marcio-sandim-lider.webp?v=3" type="image/webp">
-                <img src="assets/images/marcio-sandim-lider.jpg?v=3" alt="Dr. Márcio Sandim - Sócio Titular e Fundador" width="819" height="1024" loading="lazy">
-              </picture>
-            </a>
+        <div class="founder-text">
+          <span class="kicker">Sócio Titular &amp; Fundador</span>
+          <h2 class="section-title">Dr. Márcio Sandim</h2>
+          <p class="founder-badge">OAB/MS 10.217</p>
+          <p class="founder-bio">
+            Com mais de duas décadas de exercício profissional ininterrupto, conduz a banca com combatividade técnica nos tribunais e liderança estratégica em causas de elevada complexidade. Destacada atuação no Tribunal do Júri e em sustentações orais perante o TJ/MS, o TRF-3, o STJ e o STF, além da defesa histórica das prerrogativas da segurança pública estadual.
+          </p>
+          <ul class="founder-credentials" aria-label="Especializações">
+            <li>Pós-graduado em Direito Penal e Processual Penal</li>
+            <li>Pós-graduado em Direito Público</li>
+            <li>Pós-graduado em Direito do Trabalho e Processo do Trabalho</li>
+          </ul>
+          <div class="founder-ctas">
+            <a href="marcio-sandim.html" class="btn btn-primary">Ver perfil completo</a>
+            <a href="corpo-juridico.html" class="btn btn-ghost">Conhecer o Corpo Jurídico &rarr;</a>
           </div>
-          <div class="leader-info">
-            <h3><a href="marcio-sandim.html" class="leader-name-link" title="Ver perfil completo">Dr. Márcio Sandim</a></h3>
-            <span class="leader-badge">Sócio Titular &amp; Fundador · OAB/MS 10.217</span>
-
-            <div class="leader-pills">
-              <span class="leader-pill">Pós-Graduado Penal, Público &amp; Trabalho</span>
-              <span class="leader-pill">Tribunal do Júri</span>
-              <span class="leader-pill">Sustentações STJ &amp; STF</span>
-              <span class="leader-pill">Segurança Pública (SINPOL/MS)</span>
-            </div>
-
-            <p class="leader-bio">
-              Com carreira consolidada e tripla pós-graduação em Direito Penal e Processual Penal, Direito Público e Direito do Trabalho e Processo do Trabalho, o Dr. Márcio Sandim lidera a banca combinando rigor técnico, combatividade nos tribunais e visão multidisciplinar. Conduz defesas perante a Justiça Estadual, Federal e Cortes Superiores em Brasília (STJ e STF).
-            </p>
-            <p class="leader-bio">
-              Sua filosofia de trabalho une o profundo respeito às garantias fundamentais com o atendimento humanizado, assegurando uma advocacia de alta precisão estratégica.
-            </p>
-
-            <div class="leader-actions">
-              <a href="marcio-sandim.html" class="btn btn-primary btn-sm">
-                Conhecer Trajetória &amp; Perfil Completo &rarr;
-              </a>
-              <a href="https://wa.me/5567991672000?text=Olá,%20gostaria%20de%20agendar%20um%20atendimento%20com%20o%20Dr.%20Márcio%20Sandim." target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                Agendar Atendimento
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Grid de Advogadas Associadas (Links para Páginas Individuais) -->
-        <div class="team-grid">
-          <!-- Dra. Patricia Azevedo -->
-          <a href="patricia-azevedo.html" class="team-card team-card-link" aria-label="Acessar página e perfil completo da Dra. Patricia Azevedo">
-            <div class="team-photo">
-              <picture>
-                <source srcset="assets/images/PatriciaAzevedo.webp?v=3" type="image/webp">
-                <img src="assets/images/PatriciaAzevedo.jpeg?v=3" alt="Dra. Patricia Azevedo - Advogada Associada" width="576" height="1024" loading="lazy">
-              </picture>
-            </div>
-            <div class="team-details">
-              <h3 class="team-name">Dra. Patricia Azevedo</h3>
-              <p class="team-role">Advogada Associada</p>
-              <span class="team-link-cta">Ver perfil completo &rarr;</span>
-            </div>
-          </a>
-
-          <!-- Dra. Jayne Junqueira -->
-          <a href="jayne-junqueira.html" class="team-card team-card-link" aria-label="Acessar página e perfil completo da Dra. Jayne Junqueira">
-            <div class="team-photo">
-              <picture>
-                <source srcset="assets/images/JayneJunqueira.webp?v=3" type="image/webp">
-                <img src="assets/images/JayneJunqueira.jpeg?v=3" alt="Dra. Jayne Junqueira - Advogada Associada" width="576" height="1024" loading="lazy">
-              </picture>
-            </div>
-            <div class="team-details">
-              <h3 class="team-name">Dra. Jayne Junqueira</h3>
-              <p class="team-role">Advogada Associada</p>
-              <span class="team-link-cta">Ver perfil completo &rarr;</span>
-            </div>
-          </a>
-
-          <!-- Dra. Kamila Boeno -->
-          <a href="kamila-boeno.html" class="team-card team-card-link" aria-label="Acessar página e perfil completo da Dra. Kamila Boeno">
-            <div class="team-photo">
-              <picture>
-                <source srcset="assets/images/KamilaBoeno.webp?v=3" type="image/webp">
-                <img src="assets/images/KamilaBoeno.jpeg?v=3" alt="Dra. Kamila Boeno - Advogada Associada" width="576" height="1024" loading="lazy">
-              </picture>
-            </div>
-            <div class="team-details">
-              <h3 class="team-name">Dra. Kamila Boeno</h3>
-              <p class="team-role">Advogada Associada</p>
-              <span class="team-link-cta">Ver perfil completo &rarr;</span>
-            </div>
-          </a>
-
-
-          <!-- Dra. Isabella Rocha Cordeiro -->
-          <a href="isabella-cordeiro.html" class="team-card team-card-link" aria-label="Acessar página e perfil completo da Dra. Isabella Rocha Cordeiro">
-            <div class="team-photo">
-              <picture>
-                <source srcset="assets/images/IsabellaCordeiro.webp?v=3" type="image/webp">
-                <img src="assets/images/IsabellaCordeiro.jpeg?v=3" alt="Dra. Isabella Rocha Cordeiro - Advogada Associada" width="682" height="1024" loading="lazy">
-              </picture>
-            </div>
-            <div class="team-details">
-              <h3 class="team-name">Dra. Isabella Rocha Cordeiro</h3>
-              <p class="team-role">Advogada Associada</p>
-              <span class="team-link-cta">Ver perfil completo &rarr;</span>
-            </div>
-          </a>
-
-
-
-          <!-- Dra. Cristina Félix Figueiró -->
-          <a href="cristina-figueiro.html" class="team-card team-card-link" aria-label="Acessar página e perfil completo da Dra. Cristina Félix Figueiró">
-            <div class="team-photo">
-              <picture>
-                <source srcset="assets/images/CristinaFigueiro.webp?v=3" type="image/webp">
-                <img src="assets/images/CristinaFigueiro.jpeg?v=3" alt="Dra. Cristina Félix Figueiró - Advogada Associada" width="576" height="1024" loading="lazy">
-              </picture>
-            </div>
-            <div class="team-details">
-              <h3 class="team-name">Dra. Cristina Félix Figueiró</h3>
-              <p class="team-role">Advogada Associada</p>
-              <span class="team-link-cta">Ver perfil completo &rarr;</span>
-            </div>
-          </a>
-
-          <!-- Dra. Adriana da Silva Bairrada -->
-          <a href="adriana-bairrada.html" class="team-card team-card-link" aria-label="Acessar página e perfil completo da Dra. Adriana da Silva Bairrada">
-            <div class="team-photo">
-              <picture>
-                <source srcset="assets/images/AdrianaBairrada.webp?v=3" type="image/webp">
-                <img src="assets/images/AdrianaBairrada.jpeg?v=3" alt="Dra. Adriana da Silva Bairrada - Advogada Associada" width="768" height="1024" loading="lazy">
-              </picture>
-            </div>
-            <div class="team-details">
-              <h3 class="team-name">Dra. Adriana Bairrada</h3>
-              <p class="team-role">Advogada Associada</p>
-              <span class="team-link-cta">Ver perfil completo &rarr;</span>
-            </div>
-          </a>
         </div>
       </div>
     </section>
@@ -622,163 +508,49 @@
          SEÇÃO CLIENTES & CONFIANÇA INSTITUCIONAL
          ========================================================================== -->
     <section class="section-clients" id="clientes">
-      <div class="container">
+      <div class="container clients-layout">
         <div class="clients-header">
           <span class="kicker">Confiança Institucional</span>
-          <h2 class="section-title">Clientes &amp; Entidades de Destaque</h2>
+          <h2 class="section-title">Clientes de Destaque</h2>
           <p class="section-subtitle">
             Representação contenciosa, consultiva e estratégica para entidades de classe, concessões públicas e corporações que movem o Mato Grosso do Sul.
           </p>
         </div>
 
-        <!-- DESTAQUE PRINCIPAL: SINPOL/MS (SINDICATO DOS POLICIAIS CIVIS) -->
-        <div class="client-featured-card">
-          <div class="client-featured-badge-bar">
-            <span class="client-featured-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 2.18l6 2.25v4.66c0 4.1-2.67 7.94-6 9.01-3.33-1.07-6-4.91-6-9.01V6.43l6-2.25z"/>
-              </svg>
-              Atuação Institucional de Maior Relevância &middot; Entidade Representativa Estadual
-            </span>
-            <span class="client-status-indicator">
-              <span class="pulse-dot"></span> Atendimento Jurídico Contínuo
-            </span>
-          </div>
-
-          <div class="client-featured-body">
-            <div class="client-featured-main">
-              <div class="client-featured-header">
-                <div class="client-emblem-badge" aria-hidden="true">
-                  <!-- Escudo Heráldico da Polícia Civil & Justiça -->
-                  <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    <path d="m9 12 2 2 4-4"/>
-                  </svg>
-                </div>
-                <div>
-                  <span class="client-segment">Segurança Pública &middot; Representação Sindical de MS</span>
-                  <h3 class="client-featured-title">Sindicato dos Policiais Civis de Mato Grosso do Sul &mdash; SINPOL/MS</h3>
-                  <p class="client-featured-lead">
-                    Assessoria jurídica oficial, representação institucional e salvaguarda permanente dos direitos e prerrogativas funcionais dos policiais civis em todo o Estado.
-                  </p>
-                </div>
-              </div>
-
-              <p class="client-featured-desc">
-                O escritório Márcio Sandim Advogados é a banca responsável pela defesa combativa e suporte técnico dos servidores policiais civis de Mato Grosso do Sul. Nossa atuação abrange o acompanhamento imediato em ocorrências operacionais, defesa em sindicâncias e procedimentos disciplinares perante a Corregedoria-Geral da Polícia Civil, além da condução de ações judiciais e sustentações orais perante o Tribunal de Justiça de MS e Cortes Superiores em Brasília (STJ e STF).
-              </p>
-
-              <!-- Grid de Destaques SINPOL -->
-              <div class="client-highlights-grid">
-                <div class="client-highlight-item">
-                  <div class="highlight-icon" aria-hidden="true">&#128737;</div>
-                  <div>
-                    <h4>Corregedorias &amp; PADs</h4>
-                    <p>Atuação técnica em sindicâncias, averiguações e Processos Administrativos Disciplinares.</p>
-                  </div>
-                </div>
-                <div class="client-highlight-item">
-                  <div class="highlight-icon" aria-hidden="true">&#9878;</div>
-                  <div>
-                    <h4>Prerrogativas da Categoria</h4>
-                    <p>Defesa judicial e administrativa irrestrita das garantias legais dos policiais civis.</p>
-                  </div>
-                </div>
-                <div class="client-highlight-item">
-                  <div class="highlight-icon" aria-hidden="true">&#9201;</div>
-                  <div>
-                    <h4>Plantão Criminal 24 Horas</h4>
-                    <p>Assistência jurídica contínua e imediata para situações operacionais e de serviço.</p>
-                  </div>
-                </div>
-                <div class="client-highlight-item">
-                  <div class="highlight-icon" aria-hidden="true">&#127963;</div>
-                  <div>
-                    <h4>Instâncias Superiores</h4>
-                    <p>Sustentações orais e recursos estratégicos perante o TJ/MS, STJ e STF.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Rodapé do Card do SINPOL com Canal de Atendimento -->
-              <div class="client-featured-footer">
-                <div class="client-security-note">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                  </svg>
-                  <span>Atendimento prioritário aos filiados e seus dependentes em conformidade estatutária.</span>
-                </div>
-                <a href="https://wa.me/5567991672000?text=Olá,%20sou%20policial%20civil%20/%20filiado%20ao%20SINPOL-MS%20e%20gostaria%20de%20atendimento%20jurídico." target="_blank" rel="noopener" class="btn btn-primary btn-sm">
-                  Canal Policial Civil &middot; SINPOL/MS &rarr;
-                </a>
-              </div>
+        <ol class="clients-list">
+          <li class="client-row">
+            <span class="client-index" aria-hidden="true">01</span>
+            <div class="client-body">
+              <span class="client-kicker">Segurança Pública &middot; Representação Sindical</span>
+              <h3 class="client-name">SINPOL/MS <span class="client-fullname">Sindicato dos Policiais Civis de Mato Grosso do Sul</span></h3>
+              <p class="client-desc">Assessoria jurídica oficial da entidade: defesa em sindicâncias e procedimentos disciplinares, ações judiciais e sustentações orais no TJ/MS, STJ e STF.</p>
+              <a href="https://wa.me/5567991672000?text=Olá,%20sou%20policial%20civil%20/%20filiado%20ao%20SINPOL-MS%20e%20gostaria%20de%20atendimento%20jurídico." target="_blank" rel="noopener" class="client-link">Canal do filiado SINPOL/MS <span aria-hidden="true">&rarr;</span><span class="sr-only"> (abre o WhatsApp em nova aba)</span></a>
             </div>
-          </div>
-        </div>
-
-        <!-- GRID DE CLIENTES CORPORATIVOS (CONSÓRCIO GUAICURUS & ELÉTRICA ZAN) -->
-        <div class="corporate-clients-grid">
-          <!-- Card Consórcio Guaicurus -->
-          <div class="corporate-client-card">
-            <div class="corporate-card-top">
-              <div class="corporate-icon-wrapper" aria-hidden="true">
-                <!-- Ícone Transporte & Ônibus Urbano -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="15" rx="3"/>
-                  <path d="M3 9h18"/>
-                  <path d="M7 15h.01"/>
-                  <path d="M17 15h.01"/>
-                  <path d="M5 18v2"/>
-                  <path d="M19 18v2"/>
-                </svg>
-              </div>
-              <span class="corporate-segment-tag">Concessão Pública &middot; Transporte Urbano</span>
+          </li>
+          <li class="client-row">
+            <span class="client-index" aria-hidden="true">02</span>
+            <div class="client-body">
+              <span class="client-kicker">Concessão Pública &middot; Transporte Urbano</span>
+              <h3 class="client-name">Consórcio Guaicurus <span class="client-fullname">Transporte coletivo de Campo Grande/MS</span></h3>
+              <p class="client-desc">Assessoria jurídica consultiva, estratégica e contenciosa à concessionária, em direito regulatório e contratos de concessão pública.</p>
             </div>
-            <h3 class="corporate-client-title">Consórcio Guaicurus</h3>
-            <p class="corporate-client-role">Concessionária do Transporte Coletivo de Campo Grande/MS</p>
-            <p class="corporate-client-desc">
-              Assessoria jurídica consultiva, estratégica e contenciosa para o consórcio responsável pela operação integrada da malha de transporte urbano na capital. Atuação de alta precisão em direito regulatório, contratos de concessão pública, mediação coletiva e contencioso de grande escala.
-            </p>
-            <div class="corporate-pills">
-              <span class="corporate-pill">Direito Regulatório</span>
-              <span class="corporate-pill">Concessões Públicas</span>
-              <span class="corporate-pill">Relações Trabalhistas</span>
-              <span class="corporate-pill">Contencioso Estratégico</span>
+          </li>
+          <li class="client-row">
+            <span class="client-index" aria-hidden="true">03</span>
+            <div class="client-body">
+              <span class="client-kicker">Infraestrutura &middot; Setor Comercial</span>
+              <h3 class="client-name">Elétrica Zan <span class="client-fullname">Materiais elétricos, engenharia e infraestrutura</span></h3>
+              <p class="client-desc">Suporte jurídico contínuo em contratos empresariais, estruturação societária preventiva, recuperação de ativos e defesas contenciosas patrimoniais.</p>
             </div>
-          </div>
-
-          <!-- Card Elétrica Zan -->
-          <div class="corporate-client-card">
-            <div class="corporate-card-top">
-              <div class="corporate-icon-wrapper" aria-hidden="true">
-                <!-- Ícone Energia / Engenharia / Infraestrutura -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-              </div>
-              <span class="corporate-segment-tag">Infraestrutura &middot; Setor Comercial</span>
-            </div>
-            <h3 class="corporate-client-title">Elétrica Zan</h3>
-            <p class="corporate-client-role">Materiais Elétricos, Engenharia e Infraestrutura</p>
-            <p class="corporate-client-desc">
-              Tradicional empresa sul-mato-grossense referência no fornecimento de soluções elétricas e infraestrutura comercial e industrial. Suporte jurídico contínuo em contratos empresariais com fornecedores, estruturação societária preventiva, recuperação de ativos e defesas contenciosas patrimoniais.
-            </p>
-            <div class="corporate-pills">
-              <span class="corporate-pill">Direito Empresarial</span>
-              <span class="corporate-pill">Gestão Contratual</span>
-              <span class="corporate-pill">Recuperação de Crédito</span>
-              <span class="corporate-pill">Consultoria Preventiva</span>
-            </div>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ==========================================================================
-         PUBLICAÇÕES & IMPRENSA (prévia — conteúdo em js/publicacoes-data.js)
+         PUBLICAÇÕES & IMPRENSA (chamada — conteúdo completo em publicacoes.html)
          ========================================================================== -->
-    <section class="section-publications" id="publicacoes">
+    <section class="section-publications section-publications-teaser" id="publicacoes">
       <div class="container">
         <div class="pub-header-row">
           <div>
@@ -786,9 +558,8 @@
             <h2 class="section-title">Publicações &amp; Imprensa</h2>
             <p class="section-subtitle">Artigos da nossa equipe e matérias publicadas na imprensa especializada.</p>
           </div>
-          <a href="publicacoes.html" class="btn btn-ghost btn-sm" id="verTodasPublicacoes">Ver todas as publicações &rarr;</a>
+          <a href="publicacoes.html" class="btn btn-ghost" id="verTodasPublicacoes">Ver publicações &amp; imprensa &rarr;</a>
         </div>
-        <div class="pub-grid" id="publicacoesHome"></div>
       </div>
     </section>
 
@@ -856,7 +627,12 @@
             <span class="crosshair crosshair-tr">+</span>
             <span class="crosshair crosshair-bl">+</span>
             <span class="crosshair crosshair-br">+</span>
-            <iframe class="map-frame" src="https://maps.google.com/maps?q=Avenida%20Afonso%20Pena%203504%20Campo%20Grande%20MS&t=&z=16&ie=UTF8&iwloc=&output=embed" title="Localização Márcio Sandim Advogados"></iframe>
+            <!-- Mapa sob demanda: o iframe do Google só é carregado ao tocar (economiza dados no mobile) -->
+            <button type="button" class="map-facade" id="mapFacade" data-src="https://maps.google.com/maps?q=Avenida%20Afonso%20Pena%203504%20Campo%20Grande%20MS&t=&z=16&ie=UTF8&iwloc=&output=embed" aria-label="Carregar mapa interativo da localização do escritório">
+              <svg class="map-facade-pin" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              <span class="map-facade-title">Av. Afonso Pena, 3504 &middot; Ed. Empire Center</span>
+              <span class="map-facade-cta">Toque para carregar o mapa</span>
+            </button>
           </div>
         </div>
       </div>
@@ -1007,6 +783,18 @@
     </section>
   </main>
 
+  <!-- Barra de ação fixa (somente mobile): WhatsApp e ligação sempre à mão -->
+  <nav class="mobile-cta-bar" id="mobileCtaBar" aria-label="Atendimento rápido">
+    <a href="https://wa.me/5567991672000?text=Olá,%20gostaria%20de%20agendar%20um%20atendimento%20com%20a%20equipe%20jurídica." target="_blank" rel="noopener" class="mobile-cta mobile-cta-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+      WhatsApp
+    </a>
+    <a href="tel:6730291060" class="mobile-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      Ligar
+    </a>
+  </nav>
+
   <!-- ==========================================================================
        FOOTER INSTITUCIONAL SOLENE
        ========================================================================== -->
@@ -1029,7 +817,7 @@
             <li><a href="#hero">Início</a></li>
             <li><a href="#sobre">O Escritório</a></li>
             <li><a href="#areas">Áreas de Atuação</a></li>
-            <li><a href="#equipe">Corpo Jurídico</a></li>
+            <li><a href="corpo-juridico.html">Corpo Jurídico</a></li>
             <li><a href="#clientes">Clientes de Destaque</a></li>
             <li><a href="#estrutura">Sede &amp; Contato</a></li>
           <li><a href="publicacoes.html">Publicações &amp; Imprensa</a></li>
@@ -1107,8 +895,6 @@
   <div class="toast-msg" id="toast" role="status"></div>
 
   <!-- JavaScript Principal -->
-  <script src="js/main.js?v=2.4"></script>
-  <script src="js/publicacoes-data.js?v=2.1"></script>
-  <script src="js/publicacoes.js?v=2.1"></script>
+  <script src="js/main.js?v=2.5"></script>
 </body>
 </html>
