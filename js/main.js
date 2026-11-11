@@ -579,35 +579,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 7. Alternância de Tema Claro / Escuro (Theme Toggle) ---
+  // --- 7. Alternância de Tema Claro / Escuro (Theme Toggle — Escuro Primário) ---
   const themeToggles = document.querySelectorAll('.theme-toggle');
 
   const getCurrentTheme = () => {
-    return document.documentElement.getAttribute('data-theme') || 'dark';
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
   };
 
-  const applyTheme = (theme, notify = false) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('sandim_theme', theme);
-    } catch (e) {}
+  const applyTheme = (theme, { persist = false, notify = false } = {}) => {
+    const resolvedTheme = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', resolvedTheme);
+    if (persist) {
+      try {
+        localStorage.setItem('sandim_theme_user', resolvedTheme);
+      } catch (e) {}
+    }
 
     // Atualiza o meta theme-color para a barra do navegador mobile
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.content = theme === 'light' ? '#F6F4EF' : '#0E2E38';
+      metaThemeColor.content = resolvedTheme === 'light' ? '#F6F4EF' : '#0E2E38';
     }
 
     // Atualiza o meta color-scheme
     const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
     if (metaColorScheme) {
-      metaColorScheme.content = theme === 'light' ? 'light dark' : 'dark light';
+      metaColorScheme.content = resolvedTheme === 'light' ? 'light dark' : 'dark light';
     }
 
     // Atualiza o título e o texto acessível dos botões (aria-pressed removido: o rótulo muda com o tema)
     themeToggles.forEach(btn => {
       btn.removeAttribute('aria-pressed');
-      const rotulo = theme === 'light' ? 'Mudar para modo escuro' : 'Mudar para modo claro';
+      const rotulo = resolvedTheme === 'light' ? 'Mudar para modo escuro' : 'Mudar para modo claro';
       btn.setAttribute('title', rotulo);
       const srText = btn.querySelector('.theme-toggle-sr');
       if (srText) {
@@ -616,39 +619,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (notify) {
-      showToast(theme === 'light' ? 'Tema claro ativado.' : 'Tema escuro ativado.');
+      showToast(resolvedTheme === 'light' ? 'Tema claro ativado.' : 'Tema escuro ativado.');
     }
   };
 
-  // Inicializa estado dos botões de acordo com o tema ativo
-  applyTheme(getCurrentTheme(), false);
+  // Inicializa estado dos botões de acordo com o tema ativo (escuro por padrão)
+  applyTheme(getCurrentTheme(), { persist: false, notify: false });
 
   themeToggles.forEach(btn => {
     btn.addEventListener('click', () => {
       const nextTheme = getCurrentTheme() === 'light' ? 'dark' : 'light';
-      applyTheme(nextTheme, true);
+      applyTheme(nextTheme, { persist: true, notify: true });
     });
   });
-
-  // Observa mudanças de preferência do sistema operacional
-  if (window.matchMedia) {
-    const mqLight = window.matchMedia('(prefers-color-scheme: light)');
-    const onSchemeChange = (e) => {
-      let temPreferenciaSalva = null;
-      try {
-        temPreferenciaSalva = localStorage.getItem('sandim_theme');
-      } catch (err) {}
-      if (!temPreferenciaSalva) {
-        applyTheme(e.matches ? 'light' : 'dark', false);
-      }
-    };
-    // Safari < 14 só suporta addListener
-    if (mqLight.addEventListener) {
-      mqLight.addEventListener('change', onSchemeChange);
-    } else if (mqLight.addListener) {
-      mqLight.addListener(onSchemeChange);
-    }
-  }
 
   // --- 8. Mapa sob demanda (só carrega o iframe do Google ao tocar) ---
   const mapFacade = document.getElementById('mapFacade');
